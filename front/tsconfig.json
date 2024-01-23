@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "es5", // Versão do ECMAScript alvo
+    "lib": ["dom", "dom.iterable", "esnext"], // Bibliotecas incluídas durante a compilação
+    "jsx": "react", // Suporte para JSX
+    "module": "esnext", // Sistema de módulos a ser utilizado (pode ser "commonjs" ou "esnext")
+    "moduleResolution": "node", // Resolução de módulos
+    "esModuleInterop": true, // Habilita interoperabilidade com CommonJS
+    "skipLibCheck": true, // Pula a verificação de declarações de biblioteca
+    "forceConsistentCasingInFileNames": true, // Garante consistência de maiúsculas/minúsculas nos nomes dos arquivos
+    "strict": true, // Ativa todas as opções rigorosas
+    "strictNullChecks": true, // Verificações rigorosas de nulos
+    "noImplicitAny": true, // Proíbe o uso de 'any' implicitamente
+    "strictFunctionTypes": true, // Verificações rigorosas de tipos de função
+    "strictPropertyInitialization": true, // Garante inicialização rigorosa de propriedades de classe
+    "noUnusedLocals": true, // Reporta variáveis locais não utilizadas
+    "noUnusedParameters": true, // Reporta parâmetros não utilizados
+    "noImplicitReturns": true, // Proíbe declarações de retorno implícitas
+    "noFallthroughCasesInSwitch": true, // Reporta casos de fallthrough em instruções switch
+    "baseUrl": "./src", // Base URL para resolver módulos
+    "paths": {
+      // Mapeia caminhos de módulos para diretórios específicos
+      "@/*": ["*"]
+    },
+    "typeRoots": ["./types", "./node_modules/@types"], // Diretórios onde procurar declarações de tipos
+    "declaration": true, // Gera arquivos de declaração (.d.ts)
+    "emitDecoratorMetadata": true, // Ativa metadados de decoradores para reflexão
+    "experimentalDecorators": true, // Ativa o suporte a decoradores experimentais
+    "jsxFactory": "React.createElement", // Define a fábrica JSX a ser usada (pode ser necessário para projetos com React)
+    "noEmit": true, // Não gera arquivos de saída durante a compilação
+    "incremental": true, // Ativa a compilação incremental
+    "tsBuildInfoFile": "./dist/tsconfig.tsbuildinfo" // Arquivo para armazenar informações de construção incremental
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"], // Arquivos incluídos na compilação
+  "exclude": ["node_modules", "build"] // Diretórios/exclusões da compilação
+}
