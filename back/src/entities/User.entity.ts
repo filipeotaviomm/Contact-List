@@ -15,6 +15,9 @@ class User {
   @PrimaryGeneratedColumn("uuid")
   id: number;
 
+  @Column({ length: 350 })
+  avatar: string;
+
   @Column({ length: 50 })
   name: string;
 

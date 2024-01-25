@@ -7,6 +7,14 @@ import {
 } from "typeorm";
 import User from "./User.entity";
 
+enum ContactCategory {
+  work = "Trabalho",
+  family = "Família",
+  school = "Escola",
+  friends = "Amigos",
+  standard = "Padrão",
+}
+
 @Entity("contacts")
 class Contact {
   @PrimaryGeneratedColumn("uuid")
@@ -20,6 +28,13 @@ class Contact {
 
   @Column({ length: 15 })
   phone: number | string;
+
+  @Column({
+    length: 20,
+    enum: ContactCategory,
+    default: ContactCategory.standard,
+  })
+  category: ContactCategory;
 
   @CreateDateColumn({ type: "date" })
   createdAt: string;
