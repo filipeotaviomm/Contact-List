@@ -10,21 +10,21 @@ const userSchema = z.object({
   createdAt: z.string(),
 });
 
-const userCreateSchema = userSchema.omit({
+const userReqSchema = userSchema.omit({
   id: true,
   createdAt: true,
 });
 
-const userReadSchema = userSchema.omit({ password: true });
+const userRespSchema = userSchema.omit({ password: true });
 
-const userUpdateSchema = userCreateSchema.partial();
+const userUpdateSchema = userReqSchema.partial();
 
-const userLoginSchema = userSchema.pick({ name: true, password: true });
+const loginSchema = userSchema.pick({ name: true, password: true });
 
 export {
   userSchema,
-  userCreateSchema,
-  userReadSchema,
+  userReqSchema,
+  userRespSchema,
   userUpdateSchema,
-  userLoginSchema,
+  loginSchema,
 };

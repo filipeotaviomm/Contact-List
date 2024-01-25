@@ -17,18 +17,21 @@ const contactSchema = z.object({
   createdAt: z.string(),
 });
 
-const contactCreateSchema = contactSchema.omit({
+const contactReqSchema = contactSchema.omit({
   id: true,
   createdAt: true,
 });
 
-const contactsReadSchema = z.array(contactSchema);
+const contactRespSchema = contactSchema;
 
-const contactUpdateSchema = contactCreateSchema.partial();
+const contactsRespSchema = z.array(contactSchema);
+
+const contactUpdateSchema = contactReqSchema.partial();
 
 export {
   contactSchema,
-  contactCreateSchema,
-  contactsReadSchema,
+  contactReqSchema,
+  contactRespSchema,
+  contactsRespSchema,
   contactUpdateSchema,
 };
