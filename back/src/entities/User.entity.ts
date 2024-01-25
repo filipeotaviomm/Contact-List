@@ -13,7 +13,7 @@ import { getRounds, hashSync } from "bcryptjs";
 @Entity("users")
 class User {
   @PrimaryGeneratedColumn("uuid")
-  id: number;
+  id: string;
 
   @Column({ length: 350 })
   avatar: string;
@@ -24,7 +24,7 @@ class User {
   @Column({ length: 50, unique: true })
   email: string;
 
-  @Column({ length: 120 })
+  @Column({ length: 15 })
   password: string;
 
   @Column({ length: 15 })

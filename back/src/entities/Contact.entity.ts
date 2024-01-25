@@ -8,17 +8,17 @@ import {
 import User from "./User.entity";
 
 enum ContactCategory {
-  work = "Trabalho",
-  family = "Família",
-  school = "Escola",
-  friends = "Amigos",
-  standard = "Padrão",
+  work = "work",
+  family = "family",
+  school = "school",
+  friends = "friends",
+  standard = "standard",
 }
 
 @Entity("contacts")
 class Contact {
   @PrimaryGeneratedColumn("uuid")
-  id: number;
+  id: string;
 
   @Column({ length: 50 })
   name: string;
