@@ -7,7 +7,7 @@ const LoginPage = () => {
   return (
     <Main>
       <Container>
-        <h1>LISZT CONTACT</h1>
+        <h1>LISZT</h1>
         <h2>Login</h2>
         <LoginForm />
         <div>

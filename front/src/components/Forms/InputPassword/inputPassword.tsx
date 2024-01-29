@@ -11,7 +11,7 @@ const InputPassword = forwardRef(
     const [isHidden, setIsHidden] = useState(true);
     return (
       <Div>
-        <label htmlFor={id}></label>
+        <label htmlFor={id}>Senha</label>
         <div>
           <input
             id={id}

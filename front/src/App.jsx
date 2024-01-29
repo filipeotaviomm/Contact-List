@@ -1,13 +1,14 @@
-import LoginPage from "./pages/LoginPage/loginPage";
-import RegisterPage from "./pages/RegisterPage/registerPage";
-import { Route, Routes } from "react-router-dom";
+import { RoutesMain } from "./routes/index";
+import GlobalStyles from "./styles/GlobalStyles";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
-    </Routes>
+    <>
+      <RoutesMain />
+      <GlobalStyles />
+      <ToastContainer autoClose={2 * 1000} />
+    </>
   );
 }
 
