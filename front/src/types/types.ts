@@ -22,3 +22,16 @@ export type IRegisteFormValues = {
   avatar: string;
   phone: number | string;
 };
+
+export interface IListContact {
+  id: string;
+  name: string;
+  email: string;
+  phone: number | string;
+  category: string;
+  createdAt: string;
+}
+
+export interface ICardContact {
+  favorite: IListContact;
+}

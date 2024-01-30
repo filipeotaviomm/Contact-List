@@ -1,12 +1,12 @@
 import React from "react";
-import { Container, Main } from "./styles";
+import { Main } from "./styles";
 import { Link } from "react-router-dom";
 import { LoginForm } from "../../components/Forms/LoginForm/loginForm";
 
 const LoginPage = () => {
   return (
     <Main>
-      <Container>
+      <div>
         <h1>LISZT</h1>
         <h2>Login</h2>
         <LoginForm />
@@ -14,7 +14,7 @@ const LoginPage = () => {
           <p>Ainda não possui uma conta?</p>
           <Link to="/register">Cadastre-se</Link>
         </div>
-      </Container>
+      </div>
     </Main>
   );
 };
