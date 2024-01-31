@@ -1,12 +1,15 @@
-import "reflect-metadata";
 import "express-async-errors";
-import express, { Application } from "express";
+import express, { Application, json } from "express";
+import { PrismaClient } from "@prisma/client";
 import { handleError } from "./errors";
+import { router } from "./routers/index.router";
 
-const app: Application = express();
+export const app: Application = express();
 
-app.use(express.json());
+export const prisma = new PrismaClient();
+
+app.use(json());
+
+app.use("/", router);
 
 app.use(handleError);
-
-export default app;
