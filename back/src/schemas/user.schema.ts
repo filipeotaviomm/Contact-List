@@ -5,9 +5,9 @@ const userSchema = z.object({
   avatar: z.string().max(350),
   name: z.string().max(50),
   email: z.string().max(50).email(),
-  password: z.string().max(15),
-  phone: z.number().max(15).or(z.string().max(15)),
-  createdAt: z.string(),
+  password: z.string(),
+  phone: z.string().max(15),
+  createdAt: z.date(),
 });
 
 const userReqSchema = userSchema.omit({
@@ -17,14 +17,17 @@ const userReqSchema = userSchema.omit({
 
 const userRespSchema = userSchema.omit({ password: true });
 
+const allUsersRespSchema = userSchema.omit({ password: true }).array();
+
 const userUpdateSchema = userReqSchema.partial();
 
-const loginSchema = userSchema.pick({ name: true, password: true });
+const loginSchema = userSchema.pick({ email: true, password: true });
 
 export {
   userSchema,
   userReqSchema,
   userRespSchema,
+  allUsersRespSchema,
   userUpdateSchema,
   loginSchema,
 };

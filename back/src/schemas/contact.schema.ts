@@ -12,14 +12,16 @@ const contactSchema = z.object({
   id: z.string(),
   name: z.string().max(50),
   email: z.string().max(50).email(),
-  phone: z.number().max(15),
+  phone: z.string().max(15),
   category: contactCategory,
-  createdAt: z.string(),
+  createdAt: z.date(),
+  userId: z.string(),
 });
 
 const contactReqSchema = contactSchema.omit({
   id: true,
   createdAt: true,
+  userId: true,
 });
 
 const contactRespSchema = contactSchema;
