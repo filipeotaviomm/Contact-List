@@ -41,12 +41,11 @@ const getContactByIdService = async (
 
 const updateContactService = async (
   contactId: string,
-  //IContactUpdate // não entendi porque essa tipagem não funciona
-  data: any
+  contactData: IContactUpdate
 ): Promise<IContactUpdate> => {
   const contact = prisma.contact.update({
     where: { id: contactId },
-    data: data,
+    data: contactData,
   });
   return contact;
 };

@@ -2,6 +2,7 @@ import React, { forwardRef, ForwardedRef, useState } from "react";
 import { Div } from "./styles";
 import { MdVisibilityOff, MdVisibility } from "react-icons/md";
 import { IInputProps } from "@/types/types";
+import { InputForm } from "../../../styles/InputStyles";
 
 const InputPassword = forwardRef(
   (
@@ -13,7 +14,7 @@ const InputPassword = forwardRef(
       <Div>
         <label htmlFor={id}>Senha</label>
         <div>
-          <input
+          <InputForm
             id={id}
             type={isHidden ? "password" : "text"}
             readOnly={readOnly}

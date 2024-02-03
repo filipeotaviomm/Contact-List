@@ -35,3 +35,5 @@ export interface IListContact {
 export interface ICardContact {
   favorite: IListContact;
 }
+
+export interface IUserContext {}

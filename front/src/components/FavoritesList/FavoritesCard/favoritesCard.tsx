@@ -1,12 +1,18 @@
 import React from "react";
 import { Li } from "./styles";
 import { ICardContact } from "@/types/types";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const FavoritesCard = (props: ICardContact) => {
   const { favorite } = props;
   return (
     <Li>
-      <h3>{favorite.name}</h3>
+      <div>
+        <h3>{favorite.name}</h3>
+        <button className="remove" title="Remover" aria-label="remove">
+          <RiDeleteBin6Line size={18} />
+        </button>
+      </div>
       <p>Telefone: {favorite.phone}</p>
       <p>E-mail:{favorite.email}</p>
       <p>Categoria:{favorite.category}</p>

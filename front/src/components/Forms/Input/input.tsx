@@ -1,6 +1,7 @@
 import React, { forwardRef, ForwardedRef } from "react";
 import { IInputProps } from "@/types/types";
 import { Div } from "./styles";
+import { InputForm } from "../../../styles/InputStyles";
 
 const Input = forwardRef(
   (
@@ -10,7 +11,7 @@ const Input = forwardRef(
     return (
       <Div>
         <label htmlFor={id}>{label}</label>
-        <input
+        <InputForm
           readOnly={readOnly}
           className="p lg"
           id={id}

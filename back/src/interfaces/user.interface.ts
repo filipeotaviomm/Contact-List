@@ -4,13 +4,19 @@ import {
   userReqSchema,
   userRespSchema,
   allUsersRespSchema,
-  userUpdateSchema,
 } from "../schemas/user.schema";
 
 type IUserReq = z.infer<typeof userReqSchema>;
 type IUserResp = z.infer<typeof userRespSchema>;
 type IAllUsersResp = z.infer<typeof allUsersRespSchema>;
-type IUserUpdate = z.infer<typeof userUpdateSchema>;
+
+interface IUserUpdate {
+  avatar?: string;
+  name?: string;
+  email?: string;
+  password?: string;
+  phone?: string;
+}
 
 type ILoginReq = z.infer<typeof loginSchema>;
 type ILoginResp = { token: string };

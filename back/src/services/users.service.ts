@@ -30,17 +30,16 @@ const getUserbyIdService = async (userId: string): Promise<IUserResp> => {
 
 const updateUserService = async (
   userId: string,
-  //IUserUpdate // não entendi porque essa tipagem não funciona
-  data: any
+  userData: IUserUpdate
 ): Promise<IUserResp> => {
-  const { password } = data;
+  const { password } = userData;
   if (password) {
     const hashedPassword = await hash(password, 10);
-    data = { ...data, password: hashedPassword };
+    userData = { ...userData, password: hashedPassword };
   }
   const user = await prisma.user.update({
     where: { id: userId },
-    data: data,
+    data: userData,
   });
   return userRespSchema.parse(user);
 };

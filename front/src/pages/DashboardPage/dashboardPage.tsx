@@ -1,15 +1,17 @@
 import React from "react";
 import { Main } from "./styles";
 import Header from "../../components/Header/header";
-import FavoritesSection from "../../components/Sections/FavoritesSection/favoritesSection";
+import SearchSection from "../../components/Sections/SearchSection/searchSection";
 import ContactsSection from "../../components/Sections/ContactsSection/contactsSection";
+import FavoritesModal from "../../components/Modals/FavoritesModal/favoritesModal";
 
 const DashboardPage = () => {
   return (
     <Main>
       <Header />
-      <FavoritesSection />
+      <SearchSection />
       <ContactsSection />
+      {/* <FavoritesModal /> */}
     </Main>
   );
 };

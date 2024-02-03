@@ -21,6 +21,22 @@ const ContactsList = () => {
       createdAt: "2024-01-01",
       category: "Família",
     },
+    {
+      id: "3",
+      name: "Nathalia",
+      phone: 970963526,
+      email: "gabriel@mail.com",
+      createdAt: "2024-01-01",
+      category: "Família",
+    },
+    {
+      id: "4",
+      name: "Filipe",
+      phone: 970963526,
+      email: "filipeotaviomm@mail.com",
+      createdAt: "2024-01-01",
+      category: "Família",
+    },
   ];
   return (
     <Ul>
