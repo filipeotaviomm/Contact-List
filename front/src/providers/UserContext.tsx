@@ -1,10 +1,6 @@
-import React, { ReactNode } from "react";
-import { IUserContext } from "@/types/types";
+import React from "react";
+import { IChildren, IUserContext } from "@/types/types";
 import { createContext } from "react";
-
-interface IChildren {
-  children: ReactNode;
-}
 
 export const UserContext = createContext({});
 

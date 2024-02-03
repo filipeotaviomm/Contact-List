@@ -1,25 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Section } from "./styles";
 import { Button } from "../../../styles/ButtonStyles";
-import { InputSearch } from "../../../styles/InputStyles";
+import { BsPersonPlus } from "react-icons/bs";
+import { FaRegHeart } from "react-icons/fa";
+import { IoSearch } from "react-icons/io5";
+import { ContactContext } from "../../../providers/ContactContext";
 
 const SearchSection = () => {
+  const { setFavsIsVisible, setAddContactIsVisible } =
+    useContext(ContactContext);
   return (
     <Section>
       <div>
         <div>
-          <InputSearch placeholder="Digite o nome do contato" />
-          <div>
-            <Button>Todos</Button>
-            <Button>Família</Button>
-            <Button>Amigos</Button>
-            <Button>Trabalho</Button>
-            <Button>Escola</Button>
+          <div className="div_input_search">
+            <input placeholder="Digite o nome do contato" />
+            <IoSearch className="search" />
           </div>
         </div>
-        <div>
-          <Button>+</Button>
-          <Button>S2</Button>
+        <div className="div_buttons">
+          <Button>Todos</Button>
+          <Button>Família</Button>
+          <Button>Amigos</Button>
+          <Button>Trabalho</Button>
+          <Button>Escola</Button>
+          <Button onClick={() => setAddContactIsVisible(true)}>
+            <BsPersonPlus size={20} />
+          </Button>
+          <Button onClick={() => setFavsIsVisible(true)}>
+            <FaRegHeart size={15} />
+          </Button>
         </div>
       </div>
     </Section>

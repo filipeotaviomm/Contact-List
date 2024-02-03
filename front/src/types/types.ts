@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { FieldError } from "react-hook-form";
 
 export interface IInputProps
@@ -36,4 +36,16 @@ export interface ICardContact {
   favorite: IListContact;
 }
 
+export interface IChildren {
+  children: ReactNode;
+}
+
 export interface IUserContext {}
+
+export interface IContactContext {
+  favsIsVisible: boolean;
+  setFavsIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+
+  addContactIsVisible: boolean;
+  setAddContactIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}
