@@ -1,12 +1,11 @@
-import React, { useState } from "react";
 import { Input } from "../Input/input";
 import { useForm } from "react-hook-form";
 import { InputPassword } from "../InputPassword/inputPassword";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ImSpinner3 } from "react-icons/im";
-import { IRegisteFormValues } from "@/types/types";
-import { registerFormSchema } from "./registerFormSchema";
+import { IRegisteFormValues, registerFormSchema } from "./registerFormSchema";
 import { Form } from "./styles";
+import { useState } from "react";
 
 const RegisterForm = () => {
   const [loading, setLoading] = useState(false);

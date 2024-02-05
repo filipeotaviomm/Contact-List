@@ -1,6 +1,5 @@
-import React from "react";
+import { ICardContact } from "../../../types/types";
 import { Li } from "./styles";
-import { ICardContact } from "@/types/types";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 const FavoritesCard = (props: ICardContact) => {

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { IChildren, IContactContext } from "@/types/types";
+import { useState } from "react";
+import { IChildren, IContactContext } from "../types/types";
 import { createContext } from "react";
 
 export const ContactContext = createContext<IContactContext>(

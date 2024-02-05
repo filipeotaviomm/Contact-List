@@ -1,5 +1,4 @@
-import React from "react";
-import { IChildren, IUserContext } from "@/types/types";
+import { IChildren, IUserContext } from "../types/types";
 import { createContext } from "react";
 
 export const UserContext = createContext({});

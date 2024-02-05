@@ -1,7 +1,6 @@
-import React from "react";
 import { Ul } from "./styles";
 import FavoritesCard from "./FavoritesCard/favoritesCard";
-import { IListContact } from "@/types/types";
+import { IListContact } from "../../types/types";
 
 const FavoritesList = () => {
   const favoritesList = [

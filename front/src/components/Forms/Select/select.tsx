@@ -1,24 +1,24 @@
-import React, { forwardRef, ForwardedRef } from "react";
-import { IInputProps } from "@/types/types";
+import { forwardRef, ForwardedRef } from "react";
+import { ISelectProps } from "../../../types/types";
+import { Div } from "./styles";
 
 export const Select = forwardRef(
   (
-    { label, id, error, ...rest }: IInputProps,
-    ref: ForwardedRef<HTMLInputElement>
+    { label, id, error, disabled, ...rest }: ISelectProps,
+    ref: ForwardedRef<HTMLSelectElement>
   ) => {
     return (
-      <div>
-        <label className="p sm" htmlFor={id}>
-          {label}
-        </label>
-        <select id={id} ref={ref} {...rest}>
-          <option value="">Selecione um módulo</option>
-          <option value="Primeiro módulo">Primeiro módulo</option>
-          <option value="Segundo módulo">Segundo módulo</option>
-          <option value="Terceiro módulo">Terceiro módulo</option>
+      <Div>
+        <label htmlFor={id}>{label}</label>
+        <select disabled={disabled} id={id} ref={ref} {...rest}>
+          <option value="standard">Padrão</option>
+          <option value="family">Família</option>
+          <option value="friends">Amigos</option>
+          <option value="work">Trabalho</option>
+          <option value="school">Escola</option>
         </select>
         {/* {error ? <p className={styles.pError}>{error.message}</p> : null} */}
-      </div>
+      </Div>
     );
   }
 );

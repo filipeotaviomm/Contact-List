@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Modal } from "./styles";
 import { IoClose } from "react-icons/io5";
 import { ContactContext } from "../../../providers/ContactContext";

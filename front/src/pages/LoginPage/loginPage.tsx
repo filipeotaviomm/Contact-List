@@ -1,4 +1,3 @@
-import React from "react";
 import { Main } from "./styles";
 import { Link } from "react-router-dom";
 import { LoginForm } from "../../components/Forms/LoginForm/loginForm";
@@ -7,7 +6,7 @@ const LoginPage = () => {
   return (
     <Main>
       <div>
-        <h1>LISZT</h1>
+        <h1 className="title">LISZT</h1>
         <h2>Login</h2>
         <LoginForm />
         <div>

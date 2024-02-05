@@ -1,7 +1,7 @@
-import React, { forwardRef, ForwardedRef, useState } from "react";
+import { forwardRef, ForwardedRef, useState } from "react";
 import { Div } from "./styles";
 import { MdVisibilityOff, MdVisibility } from "react-icons/md";
-import { IInputProps } from "@/types/types";
+import { IInputProps } from "../../../types/types";
 import { InputForm } from "../../../styles/InputStyles";
 
 const InputPassword = forwardRef(

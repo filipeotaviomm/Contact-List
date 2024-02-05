@@ -22,4 +22,8 @@ export const Main = styled.main`
     padding: 20px;
     border-radius: 10px;
   }
+
+  .title {
+    text-align: center;
+  }
 `;

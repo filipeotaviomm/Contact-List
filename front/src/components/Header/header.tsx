@@ -1,4 +1,3 @@
-import React from "react";
 import { Head } from "./styles";
 import { TiArrowSortedDown } from "react-icons/ti";
 

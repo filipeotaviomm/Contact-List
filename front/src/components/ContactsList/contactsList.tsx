@@ -1,7 +1,6 @@
-import React from "react";
 import { Ul } from "./styles";
 import ContactsCard from "./ContactsCard/contactsCard";
-import { IListContact } from "@/types/types";
+import { IListContact } from "../../types/types";
 
 const ContactsList = () => {
   const ContactsList = [

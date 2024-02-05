@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, SelectHTMLAttributes } from "react";
 import { FieldError } from "react-hook-form";
 
 export interface IInputProps
@@ -9,19 +9,12 @@ export interface IInputProps
   readOnly?: boolean;
 }
 
-export type ILoginFormValues = {
-  email: string;
-  password: string;
-};
-
-export type IRegisteFormValues = {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  avatar: string;
-  phone: number | string;
-};
+export interface ISelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+  label?: string;
+  id?: string;
+  error?: FieldError | undefined;
+  disabled?: boolean;
+}
 
 export interface IListContact {
   id: string;

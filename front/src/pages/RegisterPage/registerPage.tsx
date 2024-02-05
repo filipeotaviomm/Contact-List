@@ -1,4 +1,3 @@
-import React from "react";
 import { Container, Main } from "./styles";
 import { RegisterForm } from "../../components/Forms/RegisterForm/registerForm";
 import { Link } from "react-router-dom";

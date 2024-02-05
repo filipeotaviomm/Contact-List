@@ -1,5 +1,5 @@
-import React, { forwardRef, ForwardedRef } from "react";
-import { IInputProps } from "@/types/types";
+import { forwardRef, ForwardedRef } from "react";
+import { IInputProps } from "../../../types/types";
 import { Div } from "./styles";
 import { InputForm } from "../../../styles/InputStyles";
 
