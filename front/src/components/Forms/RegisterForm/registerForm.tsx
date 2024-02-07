@@ -3,25 +3,29 @@ import { useForm } from "react-hook-form";
 import { InputPassword } from "../InputPassword/inputPassword";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ImSpinner3 } from "react-icons/im";
-import { IRegisteFormValues, registerFormSchema } from "./registerFormSchema";
+import { IRegisterFormValues, registerFormSchema } from "./registerFormSchema";
 import { Form } from "./styles";
 import { useState } from "react";
+import { useUserContext } from "../../../hooks/useUserContext";
 
 const RegisterForm = () => {
   const [loading, setLoading] = useState(false);
+  const { userRegister } = useUserContext();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<IRegisteFormValues>({
+  } = useForm<IRegisterFormValues>({
     resolver: zodResolver(registerFormSchema),
   });
-
-  const login = () => {};
+  const registration = (formData: IRegisterFormValues) => {
+    userRegister(formData, setLoading, reset);
+  };
 
   return (
-    <Form onSubmit={handleSubmit(login)}>
+    <Form onSubmit={handleSubmit(registration)}>
       <Input
         label="Nome Completo"
         type="text"
@@ -52,7 +56,7 @@ const RegisterForm = () => {
         label="Confirmar Senha"
         id="confirmPassword"
         placeholder="Digite novamente sua senha"
-        {...register("password")}
+        {...register("confirmPassword")}
         error={errors.confirmPassword}
         disabled={loading}
       />
@@ -67,7 +71,7 @@ const RegisterForm = () => {
       />
       <Input
         label="Telefone"
-        type="number"
+        type="text"
         id="phone"
         placeholder="Digite seu telefone"
         {...register("phone")}

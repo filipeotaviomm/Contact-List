@@ -28,9 +28,12 @@ const contactRespSchema = contactSchema;
 
 const contactsRespSchema = z.array(contactSchema);
 
+const contactUpdateSchema = contactReqSchema.partial();
+
 export {
   contactSchema,
   contactReqSchema,
   contactRespSchema,
   contactsRespSchema,
+  contactUpdateSchema,
 };

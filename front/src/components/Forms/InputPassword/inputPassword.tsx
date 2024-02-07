@@ -25,7 +25,7 @@ const InputPassword = forwardRef(
             {isHidden ? <MdVisibilityOff /> : <MdVisibility />}
           </button>
         </div>
-        {error ? <p>{error.message}</p> : null}
+        {error ? <p className="error">{error.message}</p> : null}
       </Div>
     );
   }

@@ -40,10 +40,7 @@ const updateUserController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const user: IUserUpdate = await updateUserService(
-    res.locals.decoded.sub,
-    req.body
-  );
+  const user = await updateUserService(res.locals.decoded.sub, req.body);
   return res.status(200).json(user);
 };
 

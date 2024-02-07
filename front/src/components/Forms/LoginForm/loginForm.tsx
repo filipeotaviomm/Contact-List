@@ -6,9 +6,12 @@ import { ILoginFormValues, loginFormSchema } from "./loginFormSchema";
 import { ImSpinner3 } from "react-icons/im";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useUserContext } from "../../../hooks/useUserContext";
 
 const LoginForm = () => {
   const [loading, setLoading] = useState(false);
+  const { userLogin } = useUserContext();
+
   const {
     register,
     handleSubmit,
@@ -16,7 +19,9 @@ const LoginForm = () => {
     reset,
   } = useForm<ILoginFormValues>({ resolver: zodResolver(loginFormSchema) });
 
-  const login = () => {};
+  const login = (formData: ILoginFormValues) => {
+    userLogin(formData, setLoading, reset);
+  };
 
   return (
     <Form onSubmit={handleSubmit(login)}>

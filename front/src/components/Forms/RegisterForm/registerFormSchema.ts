@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const registerFormSchema = z
   .object({
-    avatar: z.string().max(350),
+    avatar: z.string().max(350).optional(),
     name: z.string().min(1, "O nome é obrigatório"),
     email: z
       .string()
@@ -31,4 +31,4 @@ export const registerFormSchema = z
     path: ["confirmPassword"],
   });
 
-export type IRegisteFormValues = z.infer<typeof registerFormSchema>;
+export type IRegisterFormValues = z.infer<typeof registerFormSchema>;

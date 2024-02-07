@@ -1,14 +1,12 @@
-import { useContext } from "react";
 import { Section } from "./styles";
 import { Button } from "../../../styles/ButtonStyles";
 import { BsPersonPlus } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
-import { ContactContext } from "../../../providers/ContactContext";
+import { useContactContext } from "../../../hooks/useContactContext";
 
 const SearchSection = () => {
-  const { setFavsIsVisible, setAddContactIsVisible } =
-    useContext(ContactContext);
+  const { setFavsIsVisible, setAddContactIsVisible } = useContactContext();
   return (
     <Section>
       <div>

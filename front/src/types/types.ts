@@ -1,5 +1,7 @@
 import React, { ReactNode, SelectHTMLAttributes } from "react";
 import { FieldError } from "react-hook-form";
+import { IRegisterFormValues } from "../components/Forms/RegisterForm/registerFormSchema";
+import { ILoginFormValues } from "../components/Forms/LoginForm/loginFormSchema";
 
 export interface IInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -33,7 +35,26 @@ export interface IChildren {
   children: ReactNode;
 }
 
-export interface IUserContext {}
+export interface IUserContext {
+  userRegister: (
+    formData: IRegisterFormValues,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    reset: () => void
+  ) => Promise<void>;
+
+  userLogin: (
+    formData: ILoginFormValues,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    reset: () => void
+  ) => Promise<void>;
+}
+
+//não estou usando até agora
+export interface IUserRegisterProps {
+  formData: IRegisterFormValues;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  reset: () => void;
+}
 
 export interface IContactContext {
   favsIsVisible: boolean;

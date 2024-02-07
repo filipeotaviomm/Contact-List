@@ -5,7 +5,7 @@ const RegisterPage = () => {
   return (
     <Main>
       <Container>
-        <h1>LISZT</h1>
+        <h1 className="title">LISZT</h1>
         <h2>Cadastre-se</h2>
         <RegisterForm />
         <p>Já possui uma conta? Faça</p>

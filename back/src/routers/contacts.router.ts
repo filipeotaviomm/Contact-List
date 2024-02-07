@@ -1,6 +1,9 @@
 import { Router } from "express";
 import { validateBody } from "../middlewares/globals.middleware";
-import { contactReqSchema } from "../schemas/contact.schema";
+import {
+  contactReqSchema,
+  contactUpdateSchema,
+} from "../schemas/contact.schema";
 import {
   createContactController,
   deleteContactController,
@@ -24,6 +27,11 @@ contactRouter.get("/", isUserLogged, getAllContactsController);
 
 contactRouter.get("/:contactId", isUserLogged, getContactByIdController);
 
-contactRouter.patch("/:contactId", isUserLogged, updateContactController);
+contactRouter.patch(
+  "/:contactId",
+  isUserLogged,
+  validateBody(contactUpdateSchema),
+  updateContactController
+);
 
 contactRouter.delete("/:contactId", isUserLogged, deleteContactController);

@@ -11,7 +11,11 @@ import { User } from "@prisma/client";
 
 const createUserService = async (data: IUserReq): Promise<IUserResp> => {
   const hashedPassword = await hash(data.password, 10);
-  const user = { ...data, password: hashedPassword };
+  const user = {
+    ...data,
+    password: hashedPassword,
+    avatar: data.avatar ? data.avatar : null,
+  };
   const newUser: User = await prisma.user.create({ data: user });
   return userRespSchema.parse(newUser);
 };
