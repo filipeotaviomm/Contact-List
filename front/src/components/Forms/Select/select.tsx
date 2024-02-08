@@ -1,6 +1,7 @@
 import { forwardRef, ForwardedRef } from "react";
 import { ISelectProps } from "../../../types/types";
 import { Div } from "./styles";
+import { SelectForm } from "../../../styles/InputStyles";
 
 export const Select = forwardRef(
   (
@@ -10,14 +11,20 @@ export const Select = forwardRef(
     return (
       <Div>
         <label htmlFor={id}>{label}</label>
-        <select disabled={disabled} id={id} ref={ref} {...rest}>
+        <SelectForm
+          defaultValue="standard"
+          disabled={disabled}
+          id={id}
+          ref={ref}
+          {...rest}
+        >
           <option value="standard">Padrão</option>
           <option value="family">Família</option>
           <option value="friends">Amigos</option>
           <option value="work">Trabalho</option>
           <option value="school">Escola</option>
-        </select>
-        {/* {error ? <p className={styles.pError}>{error.message}</p> : null} */}
+        </SelectForm>
+        {error ? <p className="error">{error.message}</p> : null}
       </Div>
     );
   }

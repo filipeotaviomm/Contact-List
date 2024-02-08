@@ -2,16 +2,21 @@ import { useContext } from "react";
 import { Modal } from "./styles";
 import { IoClose } from "react-icons/io5";
 import { ContactContext } from "../../../providers/ContactContext";
+import CreateContactForm from "../../Forms/CreateContactForm/createContactForm";
 
 const CreateContactModal = () => {
-  const { setAddContactIsVisible } = useContext(ContactContext);
+  const { setCreateContactModalIsVisible } = useContext(ContactContext);
   return (
     <Modal>
       <div>
-        <button className="close" onClick={() => setAddContactIsVisible(false)}>
+        <button
+          className="close"
+          onClick={() => setCreateContactModalIsVisible(false)}
+        >
           <IoClose />
         </button>
         <h1>Novo Contato</h1>
+        <CreateContactForm />
       </div>
     </Modal>
   );

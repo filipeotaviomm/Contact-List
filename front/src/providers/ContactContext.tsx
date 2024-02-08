@@ -3,6 +3,8 @@ import { IChildren, IContact, IContactContext } from "../types/types";
 import { createContext } from "react";
 import { api } from "../services/api";
 import { useUserContext } from "../hooks/useUserContext";
+import { toast } from "react-toastify";
+import { ICreateContactFormValues } from "../components/Forms/CreateContactForm/createContactFormSchema";
 
 export const ContactContext = createContext<IContactContext>(
   {} as IContactContext
@@ -10,41 +12,62 @@ export const ContactContext = createContext<IContactContext>(
 
 export const ContactProvider = ({ children }: IChildren) => {
   const [favsIsVisible, setFavsIsVisible] = useState(false);
-  const [addContactIsVisible, setAddContactIsVisible] = useState(false);
+  const [CreateContactModalIsVisible, setCreateContactModalIsVisible] =
+    useState(false);
   const [loading, setLoading] = useState(false);
   const [contactsList, setContactsList] = useState<IContact[] | []>([]);
-
   const { isUserLogged } = useUserContext();
+  const token: string | null = localStorage.getItem("@contact-liszt:token");
 
   useEffect(() => {
     const getAllContacts = async () => {
-      const token: string | null = localStorage.getItem("@contact-liszt:token");
-      if (token) {
-        try {
-          setLoading(true);
-          api.defaults.headers.common.Authorization = `Bearer ${token}`;
-          const response = await api.get("/contacts");
-          setContactsList(response.data);
-        } catch (error) {
-          console.log(error);
-        } finally {
-          setLoading(false);
-        }
+      // if (token) {
+      try {
+        setLoading(true);
+        api.defaults.headers.common.Authorization = `Bearer ${token}`;
+        const response = await api.get("/contacts");
+        setContactsList(response.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
       }
+      // }
     };
     getAllContacts();
   }, [isUserLogged]);
+
+  const createContact = async (
+    formData: ICreateContactFormValues,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    reset: () => void
+  ) => {
+    try {
+      setLoading(true);
+      const response = await api.post("/contacts", formData);
+      api.defaults.headers.common.Authorization = `Bearer ${token}`;
+      setContactsList([...contactsList, response.data]);
+      toast.success("Contato criado com sucesso");
+      setCreateContactModalIsVisible(false);
+      reset();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <ContactContext.Provider
       value={{
         favsIsVisible,
         setFavsIsVisible,
-        addContactIsVisible,
-        setAddContactIsVisible,
+        CreateContactModalIsVisible,
+        setCreateContactModalIsVisible,
         loading,
         contactsList,
         setContactsList,
+        createContact,
       }}
     >
       {children}

@@ -6,7 +6,8 @@ import { IoSearch } from "react-icons/io5";
 import { useContactContext } from "../../../hooks/useContactContext";
 
 const SearchSection = () => {
-  const { setFavsIsVisible, setAddContactIsVisible } = useContactContext();
+  const { setFavsIsVisible, setCreateContactModalIsVisible } =
+    useContactContext();
   return (
     <Section>
       <div>
@@ -22,7 +23,7 @@ const SearchSection = () => {
           <Button>Amigos</Button>
           <Button>Trabalho</Button>
           <Button>Escola</Button>
-          <Button onClick={() => setAddContactIsVisible(true)}>
+          <Button onClick={() => setCreateContactModalIsVisible(true)}>
             <BsPersonPlus size={20} />
           </Button>
           <Button onClick={() => setFavsIsVisible(true)}>

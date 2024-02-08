@@ -2,6 +2,7 @@ import React, { ReactNode, SelectHTMLAttributes } from "react";
 import { FieldError } from "react-hook-form";
 import { IRegisterFormValues } from "../components/Forms/RegisterForm/registerFormSchema";
 import { ILoginFormValues } from "../components/Forms/LoginForm/loginFormSchema";
+import { ICreateContactFormValues } from "../components/Forms/CreateContactForm/createContactFormSchema";
 
 export interface IInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -62,13 +63,6 @@ export interface IUserContext {
   isUserLogged: boolean;
 }
 
-//não estou usando até agora
-// export interface IUserRegisterProps {
-//   formData: IRegisterFormValues;
-//   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-//   reset: () => void;
-// }
-
 export interface IContact {
   id: string;
   name: string;
@@ -83,11 +77,17 @@ export interface IContactContext {
   favsIsVisible: boolean;
   setFavsIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 
-  addContactIsVisible: boolean;
-  setAddContactIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  CreateContactModalIsVisible: boolean;
+  setCreateContactModalIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 
   loading: boolean;
 
   contactsList: IContact[] | [];
   setContactsList: React.Dispatch<React.SetStateAction<[] | IContact[]>>;
+
+  createContact: (
+    formData: ICreateContactFormValues,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    reset: () => void
+  ) => Promise<void>;
 }

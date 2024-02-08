@@ -7,14 +7,14 @@ import CreateContactModal from "../../components/Modals/CreateContactModal/creat
 import { useContactContext } from "../../hooks/useContactContext";
 
 const DashboardPage = () => {
-  const { favsIsVisible, addContactIsVisible } = useContactContext();
+  const { favsIsVisible, CreateContactModalIsVisible } = useContactContext();
   return (
     <Main>
       <Header />
       <SearchSection />
       <ContactsSection />
       {favsIsVisible ? <FavoritesModal /> : null}
-      {addContactIsVisible ? <CreateContactModal /> : null}
+      {CreateContactModalIsVisible ? <CreateContactModal /> : null}
     </Main>
   );
 };
