@@ -11,7 +11,7 @@ import {
   getContactByIdController,
   updateContactController,
 } from "../controllers/contacts.controller";
-import { isEmailUnique, isUserLogged } from "../middlewares/users.middleware";
+import { isUserLogged } from "../middlewares/users.middleware";
 
 export const contactRouter: Router = Router();
 
@@ -19,7 +19,6 @@ contactRouter.post(
   "/",
   isUserLogged,
   validateBody(contactReqSchema),
-  isEmailUnique,
   createContactController
 );
 
