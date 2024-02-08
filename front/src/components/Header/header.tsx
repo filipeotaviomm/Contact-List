@@ -1,19 +1,25 @@
+import { useUserContext } from "../../hooks/useUserContext";
 import { Head } from "./styles";
 import { TiArrowSortedDown } from "react-icons/ti";
 
 const Header = () => {
-  const user = {
-    avatar:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlxMYbpoWaK75qgvZJfZB0cAdA2ZT0NVYv5g&usqp=CAU",
-    name: "Filipe",
-  };
+  const { user } = useUserContext();
+
+  const firstLetterName = user.name ? user.name.charAt(0).toUpperCase() : "";
 
   return (
     <Head>
       <h1>LISZT</h1>
       <div>
-        <img className="avatar" src={user.avatar} alt="user-photo" />
-        <p>{user.name}</p>
+        {user.avatar ? (
+          <img className="avatar" src={user.avatar} alt="user-photo" />
+        ) : (
+          <div className="first_letter">
+            <p>{firstLetterName}</p>
+          </div>
+        )}
+
+        <p>{user.name ? user.name : "carregando..."}</p>
         <button>
           <TiArrowSortedDown size={20} />
         </button>

@@ -35,4 +35,19 @@ export const Head = styled.header`
     height: 50px;
     border-radius: 100%;
   }
+
+  .first_letter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: #28c1ef;
+    border: 2px solid white;
+
+    & > p {
+      font-size: 25px;
+    }
+  }
 `;

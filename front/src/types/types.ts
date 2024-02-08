@@ -35,6 +35,15 @@ export interface IChildren {
   children: ReactNode;
 }
 
+export interface IUser {
+  id: string;
+  avatar: string | null;
+  name: string;
+  email: string;
+  phone: string;
+  createdAt: string;
+}
+
 export interface IUserContext {
   userRegister: (
     formData: IRegisterFormValues,
@@ -47,13 +56,27 @@ export interface IUserContext {
     setLoading: React.Dispatch<React.SetStateAction<boolean>>,
     reset: () => void
   ) => Promise<void>;
+
+  user: IUser;
+
+  isUserLogged: boolean;
 }
 
 //não estou usando até agora
-export interface IUserRegisterProps {
-  formData: IRegisterFormValues;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  reset: () => void;
+// export interface IUserRegisterProps {
+//   formData: IRegisterFormValues;
+//   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+//   reset: () => void;
+// }
+
+export interface IContact {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  category: string;
+  createdAt: string;
+  userId: string;
 }
 
 export interface IContactContext {
@@ -62,4 +85,9 @@ export interface IContactContext {
 
   addContactIsVisible: boolean;
   setAddContactIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+
+  loading: boolean;
+
+  contactsList: IContact[] | [];
+  setContactsList: React.Dispatch<React.SetStateAction<[] | IContact[]>>;
 }

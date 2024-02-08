@@ -1,14 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { IRegisterFormValues } from "../components/Forms/RegisterForm/registerFormSchema";
 import { api } from "../services/api";
-import { IChildren, IUserContext } from "../types/types";
-import { createContext } from "react";
+import { IChildren, IUser, IUserContext } from "../types/types";
+import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { ILoginFormValues } from "../components/Forms/LoginForm/loginFormSchema";
+import { jwtDecode } from "jwt-decode";
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IChildren) => {
+  const [isUserLogged, setIsUserLogged] = useState<boolean>(false);
+  const [user, setUser] = useState<IUser>({} as IUser);
+
   const navigate = useNavigate();
 
   const userRegister = async (
@@ -43,8 +47,8 @@ export const UserProvider = ({ children }: IChildren) => {
       setLoading(true);
       const response = await api.post("/login", formData);
       const { token } = response.data;
-      api.defaults.headers.common.Authorization = `Bearer ${token}`;
       localStorage.setItem("@contact-liszt:token", token);
+      setIsUserLogged(true);
       navigate("/dashboard");
       reset();
     } catch (error: any) {
@@ -57,8 +61,28 @@ export const UserProvider = ({ children }: IChildren) => {
     }
   };
 
+  useEffect(() => {
+    const getUserbyId = async () => {
+      const token: string | null = localStorage.getItem("@contact-liszt:token");
+      if (token) {
+        try {
+          const decoded = jwtDecode(token);
+          api.defaults.headers.common.Authorization = `Bearer ${token}`;
+          const response = await api.get(`/users/${decoded.sub}`);
+          setUser(response.data);
+          navigate("/dashboard");
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    };
+    getUserbyId();
+  }, [isUserLogged]);
+
   return (
-    <UserContext.Provider value={{ userRegister, userLogin }}>
+    <UserContext.Provider
+      value={{ userRegister, userLogin, user, isUserLogged }}
+    >
       {children}
     </UserContext.Provider>
   );

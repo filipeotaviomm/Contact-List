@@ -2,8 +2,7 @@ import { ICardContact } from "../../../types/types";
 import { Li } from "./styles";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
-const FavoritesCard = (props: ICardContact) => {
-  const { favorite } = props;
+const FavoritesCard = ({ favorite }: ICardContact) => {
   return (
     <Li>
       <div>

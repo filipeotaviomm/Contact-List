@@ -3,8 +3,7 @@ import { MdOutlineModeEditOutline } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { ICardContact } from "../../../types/types";
 
-const ContactsCard = (props: ICardContact) => {
-  const { favorite } = props;
+const ContactsCard = ({ favorite }: ICardContact) => {
   return (
     <Li>
       <div>
