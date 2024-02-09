@@ -90,4 +90,14 @@ export interface IContactContext {
     setLoading: React.Dispatch<React.SetStateAction<boolean>>,
     reset: () => void
   ) => Promise<void>;
+
+  searchInputValue: string;
+  setSearchInputValue: React.Dispatch<React.SetStateAction<string>>;
+
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+
+  contactsResult: IContact[] | [];
+
+  bringBackAllContacts: () => void;
 }

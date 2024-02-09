@@ -18,7 +18,7 @@ export const Section = styled.section`
     /* align-items: center; */
   }
 
-  .div_input_search {
+  .form_input_search {
     border: 1px solid black;
     border-radius: 3px;
     padding: 5px;
@@ -28,6 +28,11 @@ export const Section = styled.section`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    & > input {
+      outline: none;
+      border: none;
+    }
   }
 
   .div_buttons {

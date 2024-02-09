@@ -7,5 +7,6 @@ export const Section = styled.section`
   padding: 0 clamp(0px, 8vw, 200px);
   max-width: 1440px;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 `;
