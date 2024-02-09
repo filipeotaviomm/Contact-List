@@ -100,4 +100,6 @@ export interface IContactContext {
   contactsResult: IContact[] | [];
 
   bringBackAllContacts: () => void;
+
+  setCategory: React.Dispatch<React.SetStateAction<string>>;
 }

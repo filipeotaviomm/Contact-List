@@ -18,6 +18,7 @@ export const ContactProvider = ({ children }: IChildren) => {
   const [contactsList, setContactsList] = useState<IContact[] | []>([]);
   const [searchInputValue, setSearchInputValue] = useState("");
   const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
 
   const { isUserLogged } = useUserContext();
   const token: string | null = localStorage.getItem("@contact-liszt:token");
@@ -60,16 +61,21 @@ export const ContactProvider = ({ children }: IChildren) => {
     }
   };
 
-  //search filter
-  const contactsFilter = contactsList.filter((contact) =>
-    contact.name.toLowerCase().includes(search.toLowerCase())
-  );
-  const contactsResult = search ? contactsFilter : contactsList;
+  const contactsResult = contactsList.filter((contact) => {
+    const searchFilter =
+      search === ""
+        ? true
+        : contact.name.toLowerCase().includes(search.toLowerCase());
 
-  //search buttons
+    const categoryFilter =
+      category === "" ? true : contact.category === category;
+
+    return searchFilter && categoryFilter;
+  });
 
   const bringBackAllContacts = () => {
     setSearch("");
+    setCategory("");
   };
 
   return (
@@ -87,8 +93,9 @@ export const ContactProvider = ({ children }: IChildren) => {
         setSearchInputValue,
         search,
         setSearch,
-        contactsResult,
         bringBackAllContacts,
+        setCategory,
+        contactsResult,
       }}
     >
       {children}

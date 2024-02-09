@@ -13,6 +13,7 @@ const SearchSection = () => {
     setFavsIsVisible,
     setCreateContactModalIsVisible,
     bringBackAllContacts,
+    setCategory,
   } = useContactContext();
 
   const submit = (e: React.FormEvent) => {
@@ -40,10 +41,10 @@ const SearchSection = () => {
         </div>
         <div className="div_buttons">
           <Button onClick={bringBackAllContacts}>Todos</Button>
-          <Button>Família</Button>
-          <Button>Amigos</Button>
-          <Button>Trabalho</Button>
-          <Button>Escola</Button>
+          <Button onClick={() => setCategory("family")}>Família</Button>
+          <Button onClick={() => setCategory("friends")}>Amigos</Button>
+          <Button onClick={() => setCategory("work")}>Trabalho</Button>
+          <Button onClick={() => setCategory("school")}>Escola</Button>
           <Button onClick={() => setCreateContactModalIsVisible(true)}>
             <BsPersonPlus size={20} />
           </Button>
