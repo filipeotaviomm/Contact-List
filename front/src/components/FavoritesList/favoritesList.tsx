@@ -1,46 +1,14 @@
 import { Ul } from "./styles";
 import FavoritesCard from "./FavoritesCard/favoritesCard";
-import { IListContact } from "../../types/types";
+import { IContact } from "../../types/types";
+import { useContactContext } from "../../hooks/useContactContext";
 
 const FavoritesList = () => {
-  const favoritesList = [
-    {
-      id: "1",
-      name: "Miguel",
-      phone: 987652456,
-      email: "miguel@mail.com",
-      createdAt: "2024-01-01",
-      category: "Família",
-    },
-    {
-      id: "2",
-      name: "Gabriel",
-      phone: 970963526,
-      email: "gabriel@mail.com",
-      createdAt: "2024-01-01",
-      category: "Família",
-    },
-    {
-      id: "3",
-      name: "Nathalia",
-      phone: 970963526,
-      email: "nathalia@mail.com",
-      createdAt: "2024-01-01",
-      category: "Família",
-    },
-    {
-      id: "4",
-      name: "Filipe",
-      phone: 970963526,
-      email: "filipeotaviomm@mail.com",
-      createdAt: "2024-01-01",
-      category: "Família",
-    },
-  ];
+  const { favoritesList } = useContactContext();
   return (
     <Ul>
-      {favoritesList.map((favorite: IListContact) => (
-        <FavoritesCard key={favorite.id} favorite={favorite} />
+      {favoritesList.map((contact: IContact) => (
+        <FavoritesCard key={contact.id} contact={contact} />
       ))}
     </Ul>
   );

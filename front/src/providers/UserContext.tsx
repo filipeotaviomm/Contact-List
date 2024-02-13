@@ -12,7 +12,12 @@ export const UserContext = createContext<IUserContext>({} as IUserContext);
 export const UserProvider = ({ children }: IChildren) => {
   const [isUserLogged, setIsUserLogged] = useState<boolean>(false);
   const [user, setUser] = useState<IUser>({} as IUser);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isUpdateUserModalOpen, setIsUpdateUserModalOpen] =
+    useState<boolean>(false);
+  const [confirmDeleteUser, setConfirmDeleteUser] = useState<boolean>(false);
 
+  const token: string | null = localStorage.getItem("@contact-liszt:token");
   const navigate = useNavigate();
 
   const userRegister = async (
@@ -24,9 +29,9 @@ export const UserProvider = ({ children }: IChildren) => {
       setLoading(true);
       await api.post("/users", formData);
       toast.success("Conta criada com sucesso");
-      setTimeout(() => {
-        navigate("/");
-      }, 1200);
+      // setTimeout(() => {
+      navigate("/");
+      // }, 1200);
       reset();
     } catch (error: any) {
       if (error.response?.status === 409) {
@@ -79,9 +84,71 @@ export const UserProvider = ({ children }: IChildren) => {
     getUserbyId();
   }, [isUserLogged]);
 
+  // revisar sobre o e-mail e os tipos
+  const updateUser = async (
+    formData: any,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  ) => {
+    if (token) {
+      try {
+        setLoading(true);
+        const decoded = jwtDecode(token);
+        api.defaults.headers.common.Authorization = `Bearer ${token}`;
+        const response = await api.patch(`/users/${decoded.sub}`, formData);
+        const newUser = { ...response.data, ...formData };
+        setUser(newUser);
+        setIsUpdateUserModalOpen(false);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
+  const deleteUser = async (
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  ) => {
+    if (token) {
+      try {
+        setLoading(true);
+        const decoded = jwtDecode(token);
+        api.defaults.headers.common.Authorization = `Bearer ${token}`;
+        await api.delete(`/users/${decoded.sub}`);
+        localStorage.removeItem("@contact-liszt:token");
+        navigate("/");
+        setConfirmDeleteUser(false);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
+  const logout = () => {
+    localStorage.removeItem("@contact-liszt:token");
+    navigate("/");
+    setIsMenuOpen(false);
+  };
+
   return (
     <UserContext.Provider
-      value={{ userRegister, userLogin, user, isUserLogged }}
+      value={{
+        userRegister,
+        userLogin,
+        user,
+        isUserLogged,
+        isMenuOpen,
+        setIsMenuOpen,
+        logout,
+        isUpdateUserModalOpen,
+        setIsUpdateUserModalOpen,
+        updateUser,
+        deleteUser,
+        confirmDeleteUser,
+        setConfirmDeleteUser,
+      }}
     >
       {children}
     </UserContext.Provider>

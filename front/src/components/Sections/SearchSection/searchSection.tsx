@@ -9,16 +9,17 @@ const SearchSection = () => {
   const {
     searchInputValue,
     setSearchInputValue,
-    setSearch,
+    setInputSearch,
     setFavsIsVisible,
     setCreateContactModalIsVisible,
-    bringBackAllContacts,
-    setCategory,
+    cleanFilters,
+    categoryButton,
+    setCategoryButton,
   } = useContactContext();
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSearch(searchInputValue);
+    setInputSearch(searchInputValue);
     setSearchInputValue("");
   };
 
@@ -40,11 +41,36 @@ const SearchSection = () => {
           </form>
         </div>
         <div className="div_buttons">
-          <Button onClick={bringBackAllContacts}>Todos</Button>
-          <Button onClick={() => setCategory("family")}>Família</Button>
-          <Button onClick={() => setCategory("friends")}>Amigos</Button>
-          <Button onClick={() => setCategory("work")}>Trabalho</Button>
-          <Button onClick={() => setCategory("school")}>Escola</Button>
+          <Button
+            className={categoryButton === "" ? "clicked" : ""}
+            onClick={cleanFilters}
+          >
+            Todos
+          </Button>
+          <Button
+            className={categoryButton === "family" ? "clicked" : ""}
+            onClick={() => setCategoryButton("family")}
+          >
+            Família
+          </Button>
+          <Button
+            className={categoryButton === "friends" ? "clicked" : ""}
+            onClick={() => setCategoryButton("friends")}
+          >
+            Amigos
+          </Button>
+          <Button
+            className={categoryButton === "work" ? "clicked" : ""}
+            onClick={() => setCategoryButton("work")}
+          >
+            Trabalho
+          </Button>
+          <Button
+            className={categoryButton === "school" ? "clicked" : ""}
+            onClick={() => setCategoryButton("school")}
+          >
+            Escola
+          </Button>
           <Button onClick={() => setCreateContactModalIsVisible(true)}>
             <BsPersonPlus size={20} />
           </Button>

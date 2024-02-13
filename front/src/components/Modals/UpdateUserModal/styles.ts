@@ -13,8 +13,8 @@ export const Modal = styled.div`
   justify-content: flex-end;
 
   & > div {
-    width: 300px;
-    height: 500px;
+    width: 320px;
+    height: 580px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,7 +25,7 @@ export const Modal = styled.div`
     position: relative;
 
     & > h1 {
-      margin-top: 30px;
+      margin-top: 20px;
     }
 
     .close {
@@ -41,6 +41,12 @@ export const Modal = styled.div`
 
     .close:hover {
       opacity: 0.9;
+    }
+
+    & > form {
+      margin-top: 20px;
+      width: 100%;
+      gap: 10px;
     }
   }
 `;

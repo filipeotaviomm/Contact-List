@@ -20,11 +20,7 @@ export const registerFormSchema = z
         "É necessário ter pelo menos um caracter especial"
       ),
     confirmPassword: z.string().min(1, "É obrigatório confirmar a senha"),
-    phone: z
-      .string()
-      .min(1, "O contato é obrigatório")
-      .max(15)
-      .or(z.number().min(1, "O contato é obrigatório").max(15)),
+    phone: z.string().min(1, "O contato é obrigatório").max(15),
   })
   .refine(({ password, confirmPassword }) => password === confirmPassword, {
     message: "As senhas não correspondem",

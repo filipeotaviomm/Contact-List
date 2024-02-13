@@ -1,11 +1,10 @@
-import { useContext } from "react";
 import { Modal } from "./styles";
 import { IoClose } from "react-icons/io5";
-import { ContactContext } from "../../../providers/ContactContext";
 import CreateContactForm from "../../Forms/CreateContactForm/createContactForm";
+import { useContactContext } from "../../../hooks/useContactContext";
 
 const CreateContactModal = () => {
-  const { setCreateContactModalIsVisible } = useContext(ContactContext);
+  const { setCreateContactModalIsVisible } = useContactContext();
   return (
     <Modal>
       <div>

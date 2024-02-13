@@ -5,16 +5,28 @@ import ContactsSection from "../../components/Sections/ContactsSection/contactsS
 import FavoritesModal from "../../components/Modals/FavoritesModal/favoritesModal";
 import CreateContactModal from "../../components/Modals/CreateContactModal/createContactModal";
 import { useContactContext } from "../../hooks/useContactContext";
+import { useUserContext } from "../../hooks/useUserContext";
+import UpdateUserModal from "../../components/Modals/UpdateUserModal/updateUserModal";
+import ConfirmDeleteUserModal from "../../components/Modals/ConfirmDeleteUserModal/confirmDeleteUserModal";
+import ConfirmDeleteContactModal from "../../components/Modals/ConfirmDeleteContactModal/confirmDeleteContactModal";
 
 const DashboardPage = () => {
-  const { favsIsVisible, CreateContactModalIsVisible } = useContactContext();
+  const { favsIsVisible, CreateContactModalIsVisible, confirmDeleteContact } =
+    useContactContext();
+  const { isUpdateUserModalOpen, confirmDeleteUser } = useUserContext();
+  console.log(Object.keys(confirmDeleteContact));
   return (
     <Main>
       <Header />
       <SearchSection />
       <ContactsSection />
-      {favsIsVisible ? <FavoritesModal /> : null}
-      {CreateContactModalIsVisible ? <CreateContactModal /> : null}
+      {favsIsVisible && <FavoritesModal />}
+      {CreateContactModalIsVisible && <CreateContactModal />}
+      {isUpdateUserModalOpen && <UpdateUserModal />}
+      {confirmDeleteUser && <ConfirmDeleteUserModal />}
+      {Object.keys(confirmDeleteContact).length > 0 && (
+        <ConfirmDeleteContactModal />
+      )}
     </Main>
   );
 };

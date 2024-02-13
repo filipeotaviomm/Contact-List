@@ -1,21 +1,21 @@
 import { Div } from "./styles";
 import ContactsCard from "./ContactsCard/contactsCard";
-import { IListContact } from "../../types/types";
+import { IContact } from "../../types/types";
 import { useContactContext } from "../../hooks/useContactContext";
 
 const ContactsList = () => {
-  const { loading, contactsResult, search } = useContactContext();
+  const { contactsResult, inputSearch } = useContactContext();
   return (
     <Div>
-      {search ? <p>Resultado de busca para: {search}</p> : null}
+      {inputSearch ? <p>Resultado de busca para: {inputSearch}</p> : null}
       {contactsResult.length > 0 ? (
         <ul>
-          {contactsResult.map((favorite: IListContact) => (
-            <ContactsCard key={favorite.id} favorite={favorite} />
+          {contactsResult.map((contact: IContact) => (
+            <ContactsCard key={contact.id} contact={contact} />
           ))}
         </ul>
       ) : (
-        <p>"Nenhum resultado encontrado"</p>
+        <p>"Nenhum contato cadastrado"</p>
       )}
     </Div>
   );

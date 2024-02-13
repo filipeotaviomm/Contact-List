@@ -3,30 +3,37 @@ import { useForm } from "react-hook-form";
 import { InputPassword } from "../InputPassword/inputPassword";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ImSpinner3 } from "react-icons/im";
-import { IRegisterFormValues, registerFormSchema } from "./registerFormSchema";
 import { Form } from "./styles";
 import { useState } from "react";
 import { useUserContext } from "../../../hooks/useUserContext";
 import { Button } from "../../../styles/ButtonStyles";
+import { IUpdateFormValues, updateFormSchema } from "./updateFormSchema";
 
-const RegisterForm = () => {
+const UpdateUserForm = () => {
   const [loading, setLoading] = useState(false);
-  const { userRegister } = useUserContext();
+
+  const { user, updateUser } = useUserContext();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
-  } = useForm<IRegisterFormValues>({
-    resolver: zodResolver(registerFormSchema),
+  } = useForm<IUpdateFormValues>({
+    resolver: zodResolver(updateFormSchema),
+    values: {
+      name: user.name,
+      email: user.email,
+      // password: user.password,
+      avatar: user.avatar ? user.avatar : undefined,
+      phone: user.phone,
+    },
   });
-  const registration = (formData: IRegisterFormValues) => {
-    userRegister(formData, setLoading, reset);
+  const update = (formData: IUpdateFormValues) => {
+    updateUser(formData, setLoading);
   };
 
   return (
-    <Form onSubmit={handleSubmit(registration)}>
+    <Form onSubmit={handleSubmit(update)}>
       <Input
         label="Nome Completo"
         type="text"
@@ -45,7 +52,7 @@ const RegisterForm = () => {
         error={errors.email}
         disabled={loading}
       />
-      <InputPassword
+      {/* <InputPassword
         label="Senha"
         id="password"
         placeholder="Digite sua senha"
@@ -60,7 +67,7 @@ const RegisterForm = () => {
         {...register("confirmPassword")}
         error={errors.confirmPassword}
         disabled={loading}
-      />
+      /> */}
       <Input
         label="Url da sua Foto"
         type="text"
@@ -80,10 +87,10 @@ const RegisterForm = () => {
         disabled={loading}
       />
       <Button type="submit" disabled={loading}>
-        {loading ? <ImSpinner3 /> : "Cadastrar"}
+        {loading ? <ImSpinner3 /> : "Editar"}
       </Button>
     </Form>
   );
 };
 
-export { RegisterForm };
+export { UpdateUserForm };

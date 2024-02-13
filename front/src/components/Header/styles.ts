@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const Head = styled.header`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-around;
   padding: 40px 0px;
-  width: 95%;
+  width: 93%;
   border-radius: 0px 70px 70px 0px;
   background-image: linear-gradient(
     360deg,
@@ -17,17 +17,22 @@ export const Head = styled.header`
     #425a6e 100%
   );
 
-  h1 {
+  .logo {
     margin: 0 auto;
     padding-left: 70px;
+    width: 88%;
+    display: flex;
+    margin-left: 535px;
   }
 
-  & > div {
+  .user_box {
     display: flex;
     flex-direction: row;
     gap: 10px;
     align-items: center;
     padding-right: 40px;
+    margin-left: 300px;
+    width: 12%;
   }
 
   .avatar {
@@ -40,11 +45,12 @@ export const Head = styled.header`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
-    height: 50px;
     border-radius: 100%;
     background-color: #28c1ef;
     border: 2px solid white;
+    width: 40px;
+    height: 40px;
+    padding: 7px;
 
     & > p {
       font-size: 25px;

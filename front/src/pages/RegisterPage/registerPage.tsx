@@ -8,8 +8,10 @@ const RegisterPage = () => {
         <h1 className="title">LISZT</h1>
         <h2>Cadastre-se</h2>
         <RegisterForm />
-        <p>Já possui uma conta? Faça</p>
-        <Link to="/">login!</Link>
+        <div className="div_link">
+          <p>Já possui uma conta? Faça</p>
+          <Link to="/">login!</Link>
+        </div>
       </Container>
     </Main>
   );

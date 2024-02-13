@@ -7,6 +7,7 @@ import { ImSpinner3 } from "react-icons/im";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useUserContext } from "../../../hooks/useUserContext";
+import { Button } from "../../../styles/ButtonStyles";
 
 const LoginForm = () => {
   const [loading, setLoading] = useState(false);
@@ -42,9 +43,9 @@ const LoginForm = () => {
         error={errors.password}
         disabled={loading}
       />
-      <button type="submit" disabled={loading}>
+      <Button type="submit" disabled={loading}>
         {loading ? <ImSpinner3 /> : "Entrar"}
-      </button>
+      </Button>
     </Form>
   );
 };

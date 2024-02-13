@@ -2,7 +2,6 @@ import { forwardRef, ForwardedRef, useState } from "react";
 import { Div } from "./styles";
 import { MdVisibilityOff, MdVisibility } from "react-icons/md";
 import { IInputProps } from "../../../types/types";
-import { InputForm } from "../../../styles/InputStyles";
 
 const InputPassword = forwardRef(
   (
@@ -12,19 +11,17 @@ const InputPassword = forwardRef(
     const [isHidden, setIsHidden] = useState(true);
     return (
       <Div>
-        <label htmlFor={id}>Senha</label>
-        <div>
-          <InputForm
-            id={id}
-            type={isHidden ? "password" : "text"}
-            readOnly={readOnly}
-            ref={ref}
-            {...rest}
-          />
-          <button type="button" onClick={() => setIsHidden(!isHidden)}>
-            {isHidden ? <MdVisibilityOff /> : <MdVisibility />}
-          </button>
-        </div>
+        <label htmlFor={id}>{label}</label>
+        <input
+          id={id}
+          type={isHidden ? "password" : "text"}
+          readOnly={readOnly}
+          ref={ref}
+          {...rest}
+        />
+        <button type="button" onClick={() => setIsHidden(!isHidden)}>
+          {isHidden ? <MdVisibilityOff /> : <MdVisibility />}
+        </button>
         {error ? <p className="error">{error.message}</p> : null}
       </Div>
     );

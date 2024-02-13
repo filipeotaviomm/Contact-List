@@ -9,7 +9,7 @@ const LoginPage = () => {
         <h1 className="title">LISZT</h1>
         <h2>Login</h2>
         <LoginForm />
-        <div>
+        <div className="div_register">
           <p>Ainda não possui uma conta?</p>
           <Link to="/register">Cadastre-se</Link>
         </div>

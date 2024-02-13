@@ -40,5 +40,9 @@ export const Section = styled.section`
     flex-direction: row;
     gap: 15px;
     justify-content: center;
+
+    & > .clicked {
+      border: 2px solid blue;
+    }
   }
 `;

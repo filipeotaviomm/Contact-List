@@ -19,17 +19,17 @@ export interface ISelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   disabled?: boolean;
 }
 
-export interface IListContact {
-  id: string;
-  name: string;
-  email: string;
-  phone: number | string;
-  category: string;
-  createdAt: string;
-}
+// export interface IListContact {
+//   id: string;
+//   name: string;
+//   email: string;
+//   phone: number | string;
+//   category: string;
+//   createdAt: string;
+// }
 
 export interface ICardContact {
-  favorite: IListContact;
+  contact: IContact;
 }
 
 export interface IChildren {
@@ -61,6 +61,26 @@ export interface IUserContext {
   user: IUser;
 
   isUserLogged: boolean;
+
+  isMenuOpen: boolean;
+  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+
+  logout: () => void;
+
+  isUpdateUserModalOpen: boolean;
+  setIsUpdateUserModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+
+  updateUser: (
+    formData: any,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  ) => Promise<void>;
+
+  deleteUser: (
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  ) => Promise<void>;
+
+  confirmDeleteUser: boolean;
+  setConfirmDeleteUser: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface IContact {
@@ -94,12 +114,23 @@ export interface IContactContext {
   searchInputValue: string;
   setSearchInputValue: React.Dispatch<React.SetStateAction<string>>;
 
-  search: string;
-  setSearch: React.Dispatch<React.SetStateAction<string>>;
+  inputSearch: string;
+  setInputSearch: React.Dispatch<React.SetStateAction<string>>;
 
   contactsResult: IContact[] | [];
 
-  bringBackAllContacts: () => void;
+  cleanFilters: () => void;
 
-  setCategory: React.Dispatch<React.SetStateAction<string>>;
+  categoryButton: string;
+  setCategoryButton: React.Dispatch<React.SetStateAction<string>>;
+
+  confirmDeleteContact: IContact;
+  setConfirmDeleteContact: React.Dispatch<React.SetStateAction<IContact>>;
+
+  deleteContact: (
+    removedId: string,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  ) => Promise<void>;
+
+  favoritesList: IContact[];
 }
