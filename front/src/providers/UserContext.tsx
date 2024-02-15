@@ -89,6 +89,7 @@ export const UserProvider = ({ children }: IChildren) => {
     formData: any,
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
+    const token: string | null = localStorage.getItem("@contact-liszt:token");
     if (token) {
       try {
         setLoading(true);

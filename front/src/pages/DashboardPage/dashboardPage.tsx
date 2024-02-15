@@ -9,12 +9,16 @@ import { useUserContext } from "../../hooks/useUserContext";
 import UpdateUserModal from "../../components/Modals/UpdateUserModal/updateUserModal";
 import ConfirmDeleteUserModal from "../../components/Modals/ConfirmDeleteUserModal/confirmDeleteUserModal";
 import ConfirmDeleteContactModal from "../../components/Modals/ConfirmDeleteContactModal/confirmDeleteContactModal";
+import UpdateContactModal from "../../components/Modals/UpdateContactModal/updateContactModal";
 
 const DashboardPage = () => {
-  const { favsIsVisible, CreateContactModalIsVisible, confirmDeleteContact } =
-    useContactContext();
+  const {
+    favsIsVisible,
+    CreateContactModalIsVisible,
+    confirmDeleteContact,
+    contact,
+  } = useContactContext();
   const { isUpdateUserModalOpen, confirmDeleteUser } = useUserContext();
-  console.log(Object.keys(confirmDeleteContact));
   return (
     <Main>
       <Header />
@@ -27,6 +31,7 @@ const DashboardPage = () => {
       {Object.keys(confirmDeleteContact).length > 0 && (
         <ConfirmDeleteContactModal />
       )}
+      {Object.keys(contact).length > 0 && <UpdateContactModal />}
     </Main>
   );
 };

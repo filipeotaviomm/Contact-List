@@ -3,6 +3,7 @@ import { FieldError } from "react-hook-form";
 import { IRegisterFormValues } from "../components/Forms/RegisterForm/registerFormSchema";
 import { ILoginFormValues } from "../components/Forms/LoginForm/loginFormSchema";
 import { ICreateContactFormValues } from "../components/Forms/CreateContactForm/createContactFormSchema";
+import { IUpdateFormValues } from "../components/Forms/UpdateContactForm/updateFormSchema";
 
 export interface IInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -133,4 +134,19 @@ export interface IContactContext {
   ) => Promise<void>;
 
   favoritesList: IContact[];
+  setFavoritesList: React.Dispatch<React.SetStateAction<IContact[]>>;
+
+  addAnRemoveContactInFavoritesList: (clickedContact: IContact) => void;
+
+  removeContactFromFavoritesList: (clickedContactId: string) => void;
+
+  removeAllContactsFromFavoritesList: () => void;
+
+  contact: IContact;
+  setContact: React.Dispatch<React.SetStateAction<IContact>>;
+
+  updateContact: (
+    formData: IUpdateFormValues,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  ) => Promise<void>;
 }

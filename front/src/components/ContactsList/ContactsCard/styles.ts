@@ -1,3 +1,4 @@
+import { FaRegHeart } from "react-icons/fa";
 import styled from "styled-components";
 
 export const Li = styled.li`

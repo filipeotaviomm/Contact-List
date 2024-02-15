@@ -5,6 +5,7 @@ import { api } from "../services/api";
 import { useUserContext } from "../hooks/useUserContext";
 import { toast } from "react-toastify";
 import { ICreateContactFormValues } from "../components/Forms/CreateContactForm/createContactFormSchema";
+import { IUpdateFormValues } from "../components/Forms/UpdateContactForm/updateFormSchema";
 
 export const ContactContext = createContext<IContactContext>(
   {} as IContactContext
@@ -16,13 +17,14 @@ export const ContactProvider = ({ children }: IChildren) => {
     useState(false);
   const [loading, setLoading] = useState(false);
   const [contactsList, setContactsList] = useState<IContact[] | []>([]);
+  const [contact, setContact] = useState({} as IContact);
   const [searchInputValue, setSearchInputValue] = useState("");
   const [inputSearch, setInputSearch] = useState("");
   const [categoryButton, setCategoryButton] = useState("");
   const [confirmDeleteContact, setConfirmDeleteContact] = useState<IContact>(
     {} as IContact
   );
-  const favoritesList: IContact[] = [];
+  const [favoritesList, setFavoritesList] = useState([] as IContact[]);
 
   const { isUserLogged } = useUserContext();
   // const token: string | null = localStorage.getItem("@contact-liszt:token");
@@ -67,6 +69,35 @@ export const ContactProvider = ({ children }: IChildren) => {
     }
   };
 
+  const updateContact = async (
+    formData: IUpdateFormValues,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  ) => {
+    const token: string | null = localStorage.getItem("@contact-liszt:token");
+    if (token) {
+      setLoading(true);
+      try {
+        api.defaults.headers.common.Authorization = `Bearer ${token}`;
+        const response = await api.patch(`./contacts/${contact.id}`, formData);
+
+        const newContactsList = contactsList.map((cont) => {
+          if (cont.id === contact.id) {
+            return response.data;
+          } else {
+            return cont;
+          }
+        });
+        setContactsList(newContactsList);
+        toast.success(`${contact.name} foi atualizado com sucesso`);
+        setContact({} as IContact);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
   const deleteContact = async (
     removedId: string,
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
@@ -88,6 +119,32 @@ export const ContactProvider = ({ children }: IChildren) => {
       (contact) => contact.id !== removedId
     );
     setContactsList(contactsListFiltered);
+  };
+
+  const addAnRemoveContactInFavoritesList = (clickedContact: IContact) => {
+    const foundContact = favoritesList.findIndex(
+      (contact) => contact.id === clickedContact.id
+    );
+    if (foundContact >= 0) {
+      const newFavoritesList = [...favoritesList]; // não pode ser só favoritesList
+      newFavoritesList.splice(foundContact, 1);
+      setFavoritesList(newFavoritesList);
+    } else {
+      setFavoritesList([...favoritesList, clickedContact]);
+    }
+  };
+
+  const removeContactFromFavoritesList = (clickedContactId: string) => {
+    const newFavoritesList = favoritesList.filter(
+      (favorite) => favorite.id !== clickedContactId
+    );
+    setFavoritesList(newFavoritesList);
+  };
+
+  const removeAllContactsFromFavoritesList = () => {
+    setFavoritesList([]);
+    setFavsIsVisible(false);
+    toast.success("Todos os contatos foram removidos dos favoritos");
   };
 
   const contactsResult = contactsList.filter((contact) => {
@@ -130,6 +187,13 @@ export const ContactProvider = ({ children }: IChildren) => {
         setConfirmDeleteContact,
         deleteContact,
         favoritesList,
+        setFavoritesList,
+        addAnRemoveContactInFavoritesList,
+        removeContactFromFavoritesList,
+        removeAllContactsFromFavoritesList,
+        contact,
+        setContact,
+        updateContact,
       }}
     >
       {children}

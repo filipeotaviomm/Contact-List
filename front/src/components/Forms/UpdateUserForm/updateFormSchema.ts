@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const updateFormSchema = z.object({
   avatar: z.string().max(350).optional(),
-  name: z.string(),
+  name: z.string().min(1, "O nome é obrigatório"),
   email: z.string().email("Forneça um e-mail válido"),
   phone: z.string().min(1, "O contato é obrigatório").max(15),
   // password: z
