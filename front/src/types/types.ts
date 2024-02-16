@@ -4,6 +4,7 @@ import { IRegisterFormValues } from "../components/Forms/RegisterForm/registerFo
 import { ILoginFormValues } from "../components/Forms/LoginForm/loginFormSchema";
 import { ICreateContactFormValues } from "../components/Forms/CreateContactForm/createContactFormSchema";
 import { IUpdateFormValues } from "../components/Forms/UpdateContactForm/updateFormSchema";
+import { IUpdateUserFormValues } from "../components/Forms/UpdateUserForm/updateFormSchema";
 
 export interface IInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -60,19 +61,18 @@ export interface IUserContext {
   ) => Promise<void>;
 
   user: IUser;
+  setUser: React.Dispatch<React.SetStateAction<IUser>>;
 
   isUserLogged: boolean;
 
   isMenuOpen: boolean;
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 
-  logout: () => void;
-
   isUpdateUserModalOpen: boolean;
   setIsUpdateUserModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 
   updateUser: (
-    formData: any,
+    formData: IUpdateUserFormValues,
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => Promise<void>;
 
@@ -82,6 +82,9 @@ export interface IUserContext {
 
   confirmDeleteUser: boolean;
   setConfirmDeleteUser: React.Dispatch<React.SetStateAction<boolean>>;
+
+  isLightTheme: boolean;
+  setIsLightTheme: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface IContact {
@@ -92,6 +95,15 @@ export interface IContact {
   category: string;
   createdAt: string;
   userId: string;
+}
+
+export interface ICategories {
+  [key: string]: string; // serve para dizer que qualquer string pode ser usada como índice para acessar uma string em ICategories
+  family: string;
+  friends: string;
+  work: string;
+  school: string;
+  standard: string;
 }
 
 export interface IContactContext {

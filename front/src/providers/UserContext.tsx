@@ -6,6 +6,7 @@ import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { ILoginFormValues } from "../components/Forms/LoginForm/loginFormSchema";
 import { jwtDecode } from "jwt-decode";
+import { IUpdateUserFormValues } from "../components/Forms/UpdateUserForm/updateFormSchema";
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
@@ -16,6 +17,7 @@ export const UserProvider = ({ children }: IChildren) => {
   const [isUpdateUserModalOpen, setIsUpdateUserModalOpen] =
     useState<boolean>(false);
   const [confirmDeleteUser, setConfirmDeleteUser] = useState<boolean>(false);
+  const [isLightTheme, setIsLightTheme] = useState<boolean>(true);
 
   const token: string | null = localStorage.getItem("@contact-liszt:token");
   const navigate = useNavigate();
@@ -53,7 +55,7 @@ export const UserProvider = ({ children }: IChildren) => {
       const response = await api.post("/login", formData);
       const { token } = response.data;
       localStorage.setItem("@contact-liszt:token", token);
-      setIsUserLogged(true);
+      setIsUserLogged(!isUserLogged);
       navigate("/dashboard");
       reset();
     } catch (error: any) {
@@ -69,6 +71,7 @@ export const UserProvider = ({ children }: IChildren) => {
   useEffect(() => {
     const getUserbyId = async () => {
       const token: string | null = localStorage.getItem("@contact-liszt:token");
+      console.log(token);
       if (token) {
         try {
           const decoded = jwtDecode(token);
@@ -84,9 +87,8 @@ export const UserProvider = ({ children }: IChildren) => {
     getUserbyId();
   }, [isUserLogged]);
 
-  // revisar sobre o e-mail e os tipos
   const updateUser = async (
-    formData: any,
+    formData: IUpdateUserFormValues,
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
     const token: string | null = localStorage.getItem("@contact-liszt:token");
@@ -99,8 +101,11 @@ export const UserProvider = ({ children }: IChildren) => {
         const newUser = { ...response.data, ...formData };
         setUser(newUser);
         setIsUpdateUserModalOpen(false);
-      } catch (error) {
-        console.log(error);
+        toast.success("Perfil atualizado com sucesso");
+      } catch (error: any) {
+        if (error.response?.status === 409) {
+          toast.error("E-mail indisponível");
+        }
       } finally {
         setLoading(false);
       }
@@ -127,28 +132,24 @@ export const UserProvider = ({ children }: IChildren) => {
     }
   };
 
-  const logout = () => {
-    localStorage.removeItem("@contact-liszt:token");
-    navigate("/");
-    setIsMenuOpen(false);
-  };
-
   return (
     <UserContext.Provider
       value={{
         userRegister,
         userLogin,
         user,
+        setUser,
         isUserLogged,
         isMenuOpen,
         setIsMenuOpen,
-        logout,
         isUpdateUserModalOpen,
         setIsUpdateUserModalOpen,
         updateUser,
         deleteUser,
         confirmDeleteUser,
         setConfirmDeleteUser,
+        isLightTheme,
+        setIsLightTheme,
       }}
     >
       {children}

@@ -1,7 +1,7 @@
 import { Li } from "./styles";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { ICardContact } from "../../../types/types";
+import { ICardContact, ICategories } from "../../../types/types";
 import { useContactContext } from "../../../hooks/useContactContext";
 import { FaHeart } from "react-icons/fa";
 
@@ -12,6 +12,19 @@ const ContactsCard = ({ contact }: ICardContact) => {
     favoritesList,
     setContact,
   } = useContactContext();
+
+  const categories: ICategories = {
+    family: "Família",
+    friends: "Amigos",
+    work: "Trabalho",
+    school: "Escola",
+    standard: "Padrão",
+  };
+
+  const date = new Date(contact.createdAt);
+  const formatedDate = `${date.getDate()}/${
+    date.getMonth() + 1
+  }/${date.getFullYear()} às ${date.getHours()}:${date.getMinutes()}`;
 
   return (
     <Li>
@@ -25,10 +38,10 @@ const ContactsCard = ({ contact }: ICardContact) => {
           >
             <FaHeart
               size={18}
-              color={
+              className={
                 favoritesList.some((favorite) => favorite.id === contact.id)
-                  ? "red"
-                  : "#b1bac2"
+                  ? "red_heart"
+                  : "grey_heart"
               }
             />
           </button>
@@ -36,6 +49,7 @@ const ContactsCard = ({ contact }: ICardContact) => {
             onClick={() => setContact(contact)}
             title="Editar"
             aria-label="edit"
+            className="general"
           >
             <MdOutlineModeEditOutline size={18} />
           </button>
@@ -43,15 +57,16 @@ const ContactsCard = ({ contact }: ICardContact) => {
             onClick={() => setConfirmDeleteContact(contact)}
             title="Remover"
             aria-label="remove"
+            className="general"
           >
             <RiDeleteBin6Line size={18} />
           </button>
         </div>
       </div>
-      <p>Telefone: {contact.phone}</p>
-      <p>E-mail:{contact.email}</p>
-      <p>Categoria:{contact.category}</p>
-      <p>Criado em:{contact.createdAt}</p>
+      <p className="general">Telefone: {contact.phone}</p>
+      <p className="general">E-mail: {contact.email}</p>
+      <p className="general">Categoria: {categories[contact.category]}</p>
+      <p className="general">Criado em {formatedDate}</p>
     </Li>
   );
 };

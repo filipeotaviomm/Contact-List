@@ -14,7 +14,7 @@ function App() {
         </ContactProvider>
       </UserProvider>
       <GlobalStyles />
-      <ToastContainer autoClose={2 * 1000} />
+      <ToastContainer autoClose={2 * 1000} position="bottom-right" />
     </>
   );
 }

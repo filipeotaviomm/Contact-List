@@ -7,7 +7,7 @@ import { Form } from "./styles";
 import { useState } from "react";
 import { useUserContext } from "../../../hooks/useUserContext";
 import { Button } from "../../../styles/ButtonStyles";
-import { IUpdateFormValues, updateFormSchema } from "./updateFormSchema";
+import { IUpdateUserFormValues, updateFormSchema } from "./updateFormSchema";
 
 const UpdateUserForm = () => {
   const [loading, setLoading] = useState(false);
@@ -18,17 +18,19 @@ const UpdateUserForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IUpdateFormValues>({
+  } = useForm<IUpdateUserFormValues>({
     resolver: zodResolver(updateFormSchema),
     values: {
       name: user.name,
       email: user.email,
-      // password: user.password,
       avatar: user.avatar ? user.avatar : undefined,
       phone: user.phone,
     },
   });
-  const update = (formData: IUpdateFormValues) => {
+  const update = (formData: IUpdateUserFormValues) => {
+    if (formData.password === "") {
+      delete formData.password;
+    }
     updateUser(formData, setLoading);
   };
 
@@ -52,7 +54,7 @@ const UpdateUserForm = () => {
         error={errors.email}
         disabled={loading}
       />
-      {/* <InputPassword
+      <InputPassword
         label="Senha"
         id="password"
         placeholder="Digite sua senha"
@@ -67,7 +69,7 @@ const UpdateUserForm = () => {
         {...register("confirmPassword")}
         error={errors.confirmPassword}
         disabled={loading}
-      /> */}
+      />
       <Input
         label="Url da sua Foto"
         type="text"

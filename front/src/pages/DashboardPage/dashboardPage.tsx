@@ -10,6 +10,8 @@ import UpdateUserModal from "../../components/Modals/UpdateUserModal/updateUserM
 import ConfirmDeleteUserModal from "../../components/Modals/ConfirmDeleteUserModal/confirmDeleteUserModal";
 import ConfirmDeleteContactModal from "../../components/Modals/ConfirmDeleteContactModal/confirmDeleteContactModal";
 import UpdateContactModal from "../../components/Modals/UpdateContactModal/updateContactModal";
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "../../styles/Themes";
 
 const DashboardPage = () => {
   const {
@@ -18,21 +20,24 @@ const DashboardPage = () => {
     confirmDeleteContact,
     contact,
   } = useContactContext();
-  const { isUpdateUserModalOpen, confirmDeleteUser } = useUserContext();
+  const { isUpdateUserModalOpen, confirmDeleteUser, isLightTheme } =
+    useUserContext();
   return (
-    <Main>
-      <Header />
-      <SearchSection />
-      <ContactsSection />
-      {favsIsVisible && <FavoritesModal />}
-      {CreateContactModalIsVisible && <CreateContactModal />}
-      {isUpdateUserModalOpen && <UpdateUserModal />}
-      {confirmDeleteUser && <ConfirmDeleteUserModal />}
-      {Object.keys(confirmDeleteContact).length > 0 && (
-        <ConfirmDeleteContactModal />
-      )}
-      {Object.keys(contact).length > 0 && <UpdateContactModal />}
-    </Main>
+    <ThemeProvider theme={isLightTheme === true ? lightTheme : darkTheme}>
+      <Main>
+        <Header />
+        <SearchSection />
+        <ContactsSection />
+        {favsIsVisible && <FavoritesModal />}
+        {CreateContactModalIsVisible && <CreateContactModal />}
+        {isUpdateUserModalOpen && <UpdateUserModal />}
+        {confirmDeleteUser && <ConfirmDeleteUserModal />}
+        {Object.keys(confirmDeleteContact).length > 0 && (
+          <ConfirmDeleteContactModal />
+        )}
+        {Object.keys(contact).length > 0 && <UpdateContactModal />}
+      </Main>
+    </ThemeProvider>
   );
 };
 

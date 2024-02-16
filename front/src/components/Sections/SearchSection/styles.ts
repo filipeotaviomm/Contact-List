@@ -5,21 +5,19 @@ export const Section = styled.section`
   flex-direction: column;
   align-items: center;
   margin-top: 30px;
-  /* justify-content: center; */
-  /* width: 100%;
-  padding: 0 clamp(0px, 8vw, 200px);
-  max-width: 1440px;
-  margin: 0 auto; */
+
+  * {
+    color: ${(props) => props.theme.contrastColor};
+  }
 
   & > div {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    /* align-items: center; */
   }
 
   .form_input_search {
-    border: 1px solid black;
+    border: 1px solid ${(props) => props.theme.contrastColor};
     border-radius: 3px;
     padding: 5px;
     width: 500px;

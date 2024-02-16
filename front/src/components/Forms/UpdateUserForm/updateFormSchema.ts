@@ -1,38 +1,44 @@
 import { z } from "zod";
 
-export const updateFormSchema = z.object({
-  avatar: z.string().max(350).optional(),
-  name: z.string().min(1, "O nome é obrigatório"),
-  email: z.string().email("Forneça um e-mail válido"),
-  phone: z.string().min(1, "O contato é obrigatório").max(15),
-  // password: z
-  //   .string()
-  //   .min(1, "A senha é obrigatória")
-  //   .min(8, "É necessário pelo menos oito caracteres")
-  //   .regex(/[A-Z]+/, "É necessário conter pelo menos uma letra maiúscula")
-  //   .regex(/[a-z]+/, "É necessário conter pelo menos uma letra minúsucula")
-  //   .regex(/[0-9]+/, "É necessário pelo menos um número")
-  //   .regex(
-  //     /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/]/,
-  //     "É necessário ter pelo menos um caracter especial"
-  //   )
-  //   .optional(),
-  // confirmPassword: z
-  //   .string()
-  //   .min(1, "É obrigatório confirmar a senha")
-  //   .optional(),
-});
-// .refine(({ password, confirmPassword }) => password === confirmPassword, {
-//   message: "As senhas não correspondem",
-//   path: ["confirmPassword"],
-// });
+export const updateFormSchema = z
+  .object({
+    avatar: z.string().max(350).optional(),
+    name: z.string().min(1, "O nome é obrigatório"),
+    email: z
+      .string()
+      .min(1, "O e-mail é obrigatório")
+      .email("Forneça um e-mail válido"),
+    phone: z.string().min(1, "O contato é obrigatório").max(15),
+    password: z.string().optional(),
+    confirmPassword: z.string().optional(),
+  })
+  .refine(
+    ({ password, confirmPassword }) => {
+      if (password || confirmPassword) {
+        const passwordsMatch = password === confirmPassword;
 
-// export interface IUpdateFormValues {
-//   avatar?: string;
-//   name?: string;
-//   email?: string;
-//   password?: string;
-//   phone?: string;
-// }
+        // está atribuindo à password uma string vazia "" se ela for undefined
+        password = password ?? "";
+        confirmPassword = confirmPassword ?? "";
 
-export type IUpdateFormValues = z.infer<typeof updateFormSchema>;
+        if (!passwordsMatch) {
+          return false;
+        }
+
+        const hasUpperCase = /[A-Z]+/.test(password);
+        const hasLowerCase = /[a-z]+/.test(password);
+        const hasNumber = /[0-9]+/.test(password);
+        const hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/]/.test(password);
+
+        return hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar;
+      }
+      return true;
+    },
+    {
+      message:
+        "As senhas não correspondem ou não atendem aos critérios de segurança",
+      path: ["confirmPassword"],
+    }
+  );
+
+export type IUpdateUserFormValues = z.infer<typeof updateFormSchema>;

@@ -1,14 +1,28 @@
 import { useEffect, useRef } from "react";
 import { useUserContext } from "../../../hooks/useUserContext";
 import { Div } from "./styles";
+import { useContactContext } from "../../../hooks/useContactContext";
+import { useNavigate } from "react-router-dom";
+import { IUser } from "../../../types/types";
 
 const MenuHeader = () => {
   const {
-    logout,
     setIsMenuOpen,
     setIsUpdateUserModalOpen,
     setConfirmDeleteUser,
+    setUser,
   } = useUserContext();
+  const { setContactsList } = useContactContext();
+
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("@contact-liszt:token");
+    navigate("/");
+    setIsMenuOpen(false);
+    setUser({} as IUser);
+    setContactsList([]);
+  };
 
   const boxRef = useRef<HTMLDivElement>(null);
 

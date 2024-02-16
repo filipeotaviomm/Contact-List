@@ -6,7 +6,7 @@ export const Div = styled.div`
   width: 180px;
   height: 100px;
   background-color: white;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 5px;
   padding: 10px;
   align-items: flex-start;

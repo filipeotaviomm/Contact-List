@@ -1,11 +1,10 @@
-import { FaRegHeart } from "react-icons/fa";
 import styled from "styled-components";
 
 export const Li = styled.li`
   width: 270px;
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border: 1px solid ${(props) => props.theme.contrastColor};
   border-radius: 5px;
   padding: 15px;
   gap: 5px;
@@ -18,6 +17,18 @@ export const Li = styled.li`
     div {
       margin-bottom: 10px;
     }
+  }
+
+  .general {
+    color: ${(props) => props.theme.contrastColor};
+  }
+
+  .grey_heart {
+    color: #b1bac2;
+  }
+
+  .red_heart {
+    color: red;
   }
 
   .edit_remove_buttons {

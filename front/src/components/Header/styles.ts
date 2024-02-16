@@ -4,25 +4,31 @@ export const Head = styled.header`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
-  padding: 40px 0px;
-  width: 93%;
-  border-radius: 0px 70px 70px 0px;
-  background-image: linear-gradient(
-    360deg,
-    #0a9bb4 0,
-    #147cac 25%,
-    #53bcf2 50%,
-    #5087ab 75%,
-    #425a6e 100%
-  );
+
+  .div_blues {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 40px 0px;
+    width: 93%;
+    border-radius: 0px 70px 70px 0px;
+    background-image: linear-gradient(
+      360deg,
+      #0a9bb4 0,
+      #147cac 25%,
+      #53bcf2 50%,
+      #5087ab 75%,
+      #425a6e 100%
+    );
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.5);
+  }
 
   .logo {
     margin: 0 auto;
     padding-left: 70px;
-    width: 88%;
     display: flex;
-    margin-left: 535px;
+    margin-left: 550px;
   }
 
   .user_box {
@@ -32,7 +38,6 @@ export const Head = styled.header`
     align-items: center;
     padding-right: 40px;
     margin-left: 300px;
-    width: 12%;
   }
 
   .avatar {
@@ -55,5 +60,12 @@ export const Head = styled.header`
     & > p {
       font-size: 25px;
     }
+  }
+
+  .div_themes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 7%;
   }
 `;
