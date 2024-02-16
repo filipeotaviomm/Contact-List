@@ -6,12 +6,14 @@ import { verify } from "jsonwebtoken";
 
 export const isEmailUnique = async (
   req: Request,
-  _res: Response,
+  res: Response,
   next: NextFunction
 ): Promise<void> => {
   const containsEmail = req.body.email;
 
   if (!containsEmail) return next();
+
+  if (res.locals.decoded.email === req.body.email) return next();
 
   const email: User | null = await prisma.user.findUnique({
     where: { email: req.body.email },
@@ -43,20 +45,20 @@ export const isUserLogged = (
   return next();
 };
 
-// export const doesUserExist = async (
-//   req: Request,
-//   res: Response,
-//   next: NextFunction
-// ): Promise<void> => {
-//   const user: User | null = await prisma.user.findUnique({
-//     where: { id: req.params.userId },
-//   });
+export const doesUserExist = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  const user: User | null = await prisma.user.findUnique({
+    where: { id: req.params.userId },
+  });
 
-//   if (!user) {
-//     throw new AppError("User not found", 404);
-//   }
+  if (!user) {
+    throw new AppError("User not found", 404);
+  }
 
-//   res.locals.user = user;
+  res.locals.user = user;
 
-//   return next();
-// };
+  return next();
+};

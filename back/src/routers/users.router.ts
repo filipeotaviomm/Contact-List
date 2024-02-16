@@ -6,7 +6,11 @@ import {
   getUserByIdController,
   updateUserController,
 } from "../controllers/users.controller";
-import { isEmailUnique, isUserLogged } from "../middlewares/users.middleware";
+import {
+  doesUserExist,
+  isEmailUnique,
+  isUserLogged,
+} from "../middlewares/users.middleware";
 import { validateBody } from "../middlewares/globals.middleware";
 import { userReqSchema, userUpdateSchema } from "../schemas/user.schema";
 
@@ -21,14 +25,20 @@ userRouter.post(
 
 userRouter.get("/", isUserLogged, getAllUsersController);
 
-userRouter.get("/:userId", isUserLogged, getUserByIdController);
+userRouter.get("/:userId", doesUserExist, isUserLogged, getUserByIdController);
 
 userRouter.patch(
   "/:userId",
+  doesUserExist,
   isUserLogged,
   validateBody(userUpdateSchema),
   isEmailUnique,
   updateUserController
 );
 
-userRouter.delete("/:userId", isUserLogged, deleteUserController);
+userRouter.delete(
+  "/:userId",
+  doesUserExist,
+  isUserLogged,
+  deleteUserController
+);

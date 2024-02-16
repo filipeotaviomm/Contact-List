@@ -41,6 +41,7 @@ const updateUserService = async (
     const hashedPassword = await hash(password, 10);
     userData = { ...userData, password: hashedPassword };
   }
+
   const user = await prisma.user.update({
     where: { id: userId },
     data: userData,
