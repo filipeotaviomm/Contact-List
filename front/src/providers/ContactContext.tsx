@@ -22,7 +22,6 @@ export const ContactProvider = ({ children }: IChildren) => {
     useState(false);
   const [loading, setLoading] = useState(false);
   const [contactsList, setContactsList] = useState<IContact[] | []>([]);
-  const [contact, setContact] = useState({} as IContact);
   const [editingContact, setEditingContact] = useState({} as IContact);
   const [searchInputValue, setSearchInputValue] = useState("");
   const [inputSearch, setInputSearch] = useState("");
@@ -129,7 +128,6 @@ export const ContactProvider = ({ children }: IChildren) => {
       } catch (error) {
         console.log(error);
       } finally {
-        setContact({} as IContact);
         setLoading(false);
       }
     }
@@ -228,8 +226,6 @@ export const ContactProvider = ({ children }: IChildren) => {
         favoritesList,
         setFavoritesList,
         removeAllContactsFromFavoritesList,
-        contact,
-        setContact,
         editingContact,
         setEditingContact,
         updateContact,
