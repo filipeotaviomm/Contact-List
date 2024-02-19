@@ -50,36 +50,40 @@ Esse projeto foi criado em 2024 durante o curso de desenvolvimento web full-stac
   <h4>3º Passo - Configurando o Backend</h4>
   1. Abra um novo terminal e rode o seguinte comando para alterar para a pasta do back-end:
 
-```bash
-$ cd back
-```
+  ```bash
+  $ cd back
+  ```
 
-2. Rode os seguintes comandos:
+  2. Rode os seguintes comandos:
 
-```bash
-#instala todas as dependências necessárias
-$ npm install
+  ```bash
+  #instala todas as dependências necessárias
+  $ npm install
 
-# migrate
-$ npx prisma migrate dev
+  # migrate
+  $ npx prisma migrate dev
 
-# development
-$ npm run dev
-```
+  # development
+  $ npm run dev
+  ```
 
-  <h4>4º Passo - Testando o Front-End</h4>
+  <h4>4º Passo - Testando o Backend</h4>
+  1. Na raiz do projeto há um arquivo chamado "workspace_insomnia" que pode ser importado no insomnia para serem efetuados testes de rota.
+
+
+  <h4>5º Passo - Testando o Front-End</h4>
   1. Abra um novo terminal e rode o seguinte comando para alterar para a pasta do front-end:
 
-```bash
-$ cd front
-```
+  ```bash
+  $ cd front
+  ``` 
 
-2.Configure o Front-End:
+  2.Configure o Front-End:
 
-```bash
-#instala todas as dependências necessárias
-$ npm install
+  ```bash
+  #instala todas as dependências necessárias
+  $ npm install
 
-# development
-$ npm run dev
-```
+  # development
+  $ npm run dev
+  ```
