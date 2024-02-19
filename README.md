@@ -2,7 +2,7 @@
 
 <div style="align-items: center">
   
-![NodeJS](https://img.shields.io/badge/node.js-C3ECBC?style=for-the-badge&logo=node.js&logoColor=white) ![Express](https://img.shields.io/badge/express-FF007F.svg?style=for-the-badge&logo=express&logoColor=white) ![Typescript](https://img.shields.io/badge/TypeScript-A3CEEF?style=for-the-badge&logo=typescript&logoColor=fff) ![ReactJS](https://img.shields.io/badge/react-61DBFB.svg?style=for-the-badge&logo=react&logoColor=white)	![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) 
+![NodeJS](https://img.shields.io/badge/node.js-C3ECBC?style=for-the-badge&logo=node.js&logoColor=white) ![Express](https://img.shields.io/badge/express-FF007F.svg?style=for-the-badge&logo=express&logoColor=white) ![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white) ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) ![Typescript](https://img.shields.io/badge/TypeScript-A3CEEF?style=for-the-badge&logo=typescript&logoColor=fff) ![ReactJS](https://img.shields.io/badge/react-61DBFB.svg?style=for-the-badge&logo=react&logoColor=white)  
 
 </div>
 
@@ -27,9 +27,9 @@ Esse projeto foi criado em 2024 durante o curso de desenvolvimento web full-stac
 
 - <a name="node" href="https://nodejs.org/docs/latest/api/" target="_blank">NodeJS</a>
 - <a name="express" href="https://expressjs.com/pt-br/" target="_blank">Express</a>
-- <a name="reactjs" href="https://legacy.reactjs.org/docs/getting-started.html" target="_blank">ReactJS</a>
 - <a name="prisma" href="https://www.prisma.io/docs/getting-started" target="_blank">Prisma</a>
 - <a name="postgres" href="https://www.postgresql.org/" target="_blank">PostgreSQL</a>
+- <a name="reactjs" href="https://legacy.reactjs.org/docs/getting-started.html" target="_blank">ReactJS</a>
 
 
 <a name="install"></a>
