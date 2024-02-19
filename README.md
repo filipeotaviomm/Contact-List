@@ -29,6 +29,7 @@ Esse projeto foi criado em 2024 durante o curso de desenvolvimento web full-stac
 - <a name="express" href="https://expressjs.com/pt-br/" target="_blank">Express</a>
 - <a name="prisma" href="https://www.prisma.io/docs/getting-started" target="_blank">Prisma</a>
 - <a name="postgres" href="https://www.postgresql.org/" target="_blank">PostgreSQL</a>
+- <a name="typescript" href="https://www.typescriptlang.org/" target="_blank">TypeScript</a>
 - <a name="reactjs" href="https://legacy.reactjs.org/docs/getting-started.html" target="_blank">ReactJS</a>
 
 
