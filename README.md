@@ -28,6 +28,7 @@ Esse projeto foi criado em 2024 durante o curso de desenvolvimento web full-stac
 - <a name="node" href="https://nodejs.org/docs/latest/api/" target="_blank">NodeJS</a>
 - <a name="express" href="https://expressjs.com/pt-br/" target="_blank">Express</a>
 - <a name="reactjs" href="https://legacy.reactjs.org/docs/getting-started.html" target="_blank">ReactJS</a>
+- <a name="prisma" href="https://www.prisma.io/docs/getting-started" target="_blank">Prisma</a>
 - <a name="postgres" href="https://www.postgresql.org/" target="_blank">PostgreSQL</a>
 
 
@@ -57,7 +58,7 @@ Esse projeto foi criado em 2024 durante o curso de desenvolvimento web full-stac
   $ npm install
     
   # migrate
-  $ npm run typeorm migration:run -- -d src/data-source.ts
+  $ npx prisma migrate dev
  
   # development
   $ npm run dev
