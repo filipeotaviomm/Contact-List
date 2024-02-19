@@ -33,7 +33,7 @@ const CreateContactForm = () => {
         label="Nome"
         type="text"
         id="name"
-        placeholder="Atualize seu nome"
+        placeholder="Digite seu nome"
         {...register("name")}
         error={errors.name}
         disabled={loading}
@@ -42,7 +42,7 @@ const CreateContactForm = () => {
         label="E-mail"
         type="email"
         id="email"
-        placeholder="Atualize seu e-mail"
+        placeholder="Digite seu e-mail"
         {...register("email")}
         error={errors.email}
         disabled={loading}
@@ -51,7 +51,7 @@ const CreateContactForm = () => {
         label="Telefone"
         type="text"
         id="phone"
-        placeholder="Atualize seu telefone"
+        placeholder="Digite seu telefone"
         {...register("phone")}
         error={errors.phone}
         disabled={loading}

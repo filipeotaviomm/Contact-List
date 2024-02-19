@@ -33,10 +33,10 @@ const SearchSection = () => {
               value={searchInputValue}
               onChange={(e) => setSearchInputValue(e.target.value)}
               required
-              placeholder="Digite o nome do contato"
+              placeholder="   Digite o nome do contato"
             />
             <button type="submit">
-              <IoSearch className="search" />
+              <IoSearch size={22} className="search" />
             </button>
           </form>
         </div>
@@ -72,10 +72,10 @@ const SearchSection = () => {
             Escola
           </Button>
           <Button onClick={() => setCreateContactModalIsVisible(true)}>
-            <BsPersonPlus size={20} />
+            <BsPersonPlus size={22} />
           </Button>
           <Button onClick={() => setFavsIsVisible(true)}>
-            <FaRegHeart size={15} />
+            <FaRegHeart size={17} />
           </Button>
         </div>
       </div>

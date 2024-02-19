@@ -7,6 +7,7 @@ export const Li = styled.li`
   border-radius: 5px;
   padding: 15px;
   gap: 5px;
+  width: 100%;
 
   div {
     display: flex;

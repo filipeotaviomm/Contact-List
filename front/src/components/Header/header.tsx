@@ -10,7 +10,6 @@ const Header = () => {
     useUserContext();
 
   const firstLetterName = user.name ? user.name.charAt(0).toUpperCase() : "";
-  console.log(user.name);
 
   return (
     <Head>

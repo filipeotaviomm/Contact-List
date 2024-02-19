@@ -93,6 +93,7 @@ export interface IContact {
   email: string;
   phone: string;
   category: string;
+  isFavorite: boolean;
   createdAt: string;
   userId: string;
 }
@@ -104,6 +105,10 @@ export interface ICategories {
   work: string;
   school: string;
   standard: string;
+}
+
+export interface IFavorite {
+  isFavorite: boolean;
 }
 
 export interface IContactContext {
@@ -148,17 +153,20 @@ export interface IContactContext {
   favoritesList: IContact[];
   setFavoritesList: React.Dispatch<React.SetStateAction<IContact[]>>;
 
-  addAnRemoveContactInFavoritesList: (clickedContact: IContact) => void;
-
-  removeContactFromFavoritesList: (clickedContactId: string) => void;
-
   removeAllContactsFromFavoritesList: () => void;
 
   contact: IContact;
   setContact: React.Dispatch<React.SetStateAction<IContact>>;
 
+  editingContact: IContact;
+  setEditingContact: React.Dispatch<React.SetStateAction<IContact>>;
+
   updateContact: (
     formData: IUpdateFormValues,
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => Promise<void>;
+
+  updateLikeContact: (contact: any, isContactFavorite: any) => Promise<void>;
+
+  removeAllFavorites: (favoritesList: IContact[]) => Promise<void>;
 }

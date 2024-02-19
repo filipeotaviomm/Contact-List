@@ -1,17 +1,15 @@
 import { Li } from "./styles";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { ICardContact, ICategories } from "../../../types/types";
+import { ICardContact, ICategories, IFavorite } from "../../../types/types";
 import { useContactContext } from "../../../hooks/useContactContext";
 import { FaHeart } from "react-icons/fa";
 
 const ContactsCard = ({ contact }: ICardContact) => {
-  const {
-    setConfirmDeleteContact,
-    addAnRemoveContactInFavoritesList,
-    favoritesList,
-    setContact,
-  } = useContactContext();
+  const { setConfirmDeleteContact, setEditingContact, updateLikeContact } =
+    useContactContext();
+
+  const isContactFavorite: IFavorite = { isFavorite: !contact.isFavorite };
 
   const categories: ICategories = {
     family: "Família",
@@ -32,21 +30,17 @@ const ContactsCard = ({ contact }: ICardContact) => {
         <h3>{contact.name}</h3>
         <div className="edit_remove_buttons">
           <button
-            onClick={() => addAnRemoveContactInFavoritesList(contact)}
+            onClick={() => updateLikeContact(contact, isContactFavorite)}
             title="Favoritar"
-            aria-label="favorit"
+            aria-label="favorite"
           >
             <FaHeart
               size={18}
-              className={
-                favoritesList.some((favorite) => favorite.id === contact.id)
-                  ? "red_heart"
-                  : "grey_heart"
-              }
+              className={contact.isFavorite ? "red_heart" : "grey_heart"}
             />
           </button>
           <button
-            onClick={() => setContact(contact)}
+            onClick={() => setEditingContact(contact)}
             title="Editar"
             aria-label="edit"
             className="general"

@@ -5,11 +5,14 @@ import { UpdateContactForm } from "../../Forms/UpdateContactForm/updateContactFo
 import { IContact } from "../../../types/types";
 
 const UpdateContactModal = () => {
-  const { setContact } = useContactContext();
+  const { setEditingContact } = useContactContext();
   return (
     <Modal>
       <div>
-        <button onClick={() => setContact({} as IContact)} className="close">
+        <button
+          onClick={() => setEditingContact({} as IContact)}
+          className="close"
+        >
           <IoClose />
         </button>
         <h1>Editar Contato</h1>

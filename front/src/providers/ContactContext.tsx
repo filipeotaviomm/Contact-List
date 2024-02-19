@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { IChildren, IContact, IContactContext } from "../types/types";
+import {
+  IChildren,
+  IContact,
+  IContactContext,
+  IFavorite,
+} from "../types/types";
 import { createContext } from "react";
 import { api } from "../services/api";
 import { useUserContext } from "../hooks/useUserContext";
@@ -18,6 +23,7 @@ export const ContactProvider = ({ children }: IChildren) => {
   const [loading, setLoading] = useState(false);
   const [contactsList, setContactsList] = useState<IContact[] | []>([]);
   const [contact, setContact] = useState({} as IContact);
+  const [editingContact, setEditingContact] = useState({} as IContact);
   const [searchInputValue, setSearchInputValue] = useState("");
   const [inputSearch, setInputSearch] = useState("");
   const [categoryButton, setCategoryButton] = useState("");
@@ -27,7 +33,6 @@ export const ContactProvider = ({ children }: IChildren) => {
   const [favoritesList, setFavoritesList] = useState([] as IContact[]);
 
   const { isUserLogged } = useUserContext();
-  // const token: string | null = localStorage.getItem("@contact-liszt:token");
 
   useEffect(() => {
     const getAllContacts = async () => {
@@ -78,23 +83,77 @@ export const ContactProvider = ({ children }: IChildren) => {
       setLoading(true);
       try {
         api.defaults.headers.common.Authorization = `Bearer ${token}`;
-        const response = await api.patch(`./contacts/${contact.id}`, formData);
+        const response = await api.patch(
+          `./contacts/${editingContact.id}`,
+          formData
+        );
 
         const newContactsList = contactsList.map((cont) => {
-          if (cont.id === contact.id) {
+          if (cont.id === editingContact.id) {
             return response.data;
           } else {
             return cont;
           }
         });
         setContactsList(newContactsList);
-        toast.success(`${contact.name} foi atualizado com sucesso`);
-        setContact({} as IContact);
+        toast.success(`${editingContact.name} foi atualizado com sucesso`);
+        setEditingContact({} as IContact);
       } catch (error) {
         console.log(error);
       } finally {
         setLoading(false);
       }
+    }
+  };
+
+  const updateLikeContact = async (
+    currentContact: IContact,
+    isContactFavorite: IFavorite
+  ) => {
+    const token: string | null = localStorage.getItem("@contact-liszt:token");
+    if (token) {
+      try {
+        api.defaults.headers.common.Authorization = `Bearer ${token}`;
+        const response = await api.patch(
+          `./contacts/${currentContact.id}`,
+          isContactFavorite
+        );
+
+        const newContactsList = contactsList.map((cont) => {
+          if (cont.id === currentContact.id) {
+            return response.data;
+          }
+          return cont;
+        });
+        setContactsList(newContactsList);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setContact({} as IContact);
+        setLoading(false);
+      }
+    }
+  };
+
+  const removeAllFavorites = async (favoritesList: IContact[]) => {
+    const token: string | null = localStorage.getItem("@contact-liszt:token");
+    if (token) {
+      favoritesList.forEach(async (favorite) => {
+        try {
+          api.defaults.headers.common.Authorization = `Bearer ${token}`;
+          await api.patch(`./contacts/${favorite.id}`, {
+            isFavorite: false,
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      });
+
+      const response = await api.get("/contacts");
+      setContactsList(response.data);
+
+      toast.success("Todos os contatos foram removidos da lista de favoritos");
+      setFavsIsVisible(false);
     }
   };
 
@@ -119,26 +178,6 @@ export const ContactProvider = ({ children }: IChildren) => {
       (contact) => contact.id !== removedId
     );
     setContactsList(contactsListFiltered);
-  };
-
-  const addAnRemoveContactInFavoritesList = (clickedContact: IContact) => {
-    const foundContact = favoritesList.findIndex(
-      (contact) => contact.id === clickedContact.id
-    );
-    if (foundContact >= 0) {
-      const newFavoritesList = [...favoritesList]; // não pode ser só favoritesList
-      newFavoritesList.splice(foundContact, 1);
-      setFavoritesList(newFavoritesList);
-    } else {
-      setFavoritesList([...favoritesList, clickedContact]);
-    }
-  };
-
-  const removeContactFromFavoritesList = (clickedContactId: string) => {
-    const newFavoritesList = favoritesList.filter(
-      (favorite) => favorite.id !== clickedContactId
-    );
-    setFavoritesList(newFavoritesList);
   };
 
   const removeAllContactsFromFavoritesList = () => {
@@ -188,12 +227,14 @@ export const ContactProvider = ({ children }: IChildren) => {
         deleteContact,
         favoritesList,
         setFavoritesList,
-        addAnRemoveContactInFavoritesList,
-        removeContactFromFavoritesList,
         removeAllContactsFromFavoritesList,
         contact,
         setContact,
+        editingContact,
+        setEditingContact,
         updateContact,
+        updateLikeContact,
+        removeAllFavorites,
       }}
     >
       {children}

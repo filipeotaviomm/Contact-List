@@ -6,6 +6,7 @@ export const Div = styled.div`
   justify-content: space-between;
   height: 100%;
   gap: 10px;
+  width: 100%;
 
   & > ul {
     display: flex;
@@ -14,12 +15,13 @@ export const Div = styled.div`
     margin-top: 30px;
     padding-bottom: 60px;
     position: relative;
+    width: 100%;
   }
 
   .div_btn_remove {
     position: fixed;
     bottom: 70px;
-    left: 533px;
+    left: 525px;
     width: 300px;
     background: linear-gradient(to bottom right, #ffcccc, #ff9999);
 

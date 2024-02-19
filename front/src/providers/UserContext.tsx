@@ -71,7 +71,6 @@ export const UserProvider = ({ children }: IChildren) => {
   useEffect(() => {
     const getUserbyId = async () => {
       const token: string | null = localStorage.getItem("@contact-liszt:token");
-      console.log(token);
       if (token) {
         try {
           const decoded = jwtDecode(token);

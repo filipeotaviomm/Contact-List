@@ -11,7 +11,7 @@ export const Modal = styled.div`
   justify-content: flex-end;
 
   & > div {
-    width: 320px;
+    width: 350px;
     height: 610px;
     display: flex;
     flex-direction: column;

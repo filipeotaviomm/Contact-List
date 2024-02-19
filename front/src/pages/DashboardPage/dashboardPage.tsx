@@ -18,7 +18,7 @@ const DashboardPage = () => {
     favsIsVisible,
     CreateContactModalIsVisible,
     confirmDeleteContact,
-    contact,
+    editingContact,
   } = useContactContext();
   const { isUpdateUserModalOpen, confirmDeleteUser, isLightTheme } =
     useUserContext();
@@ -35,7 +35,7 @@ const DashboardPage = () => {
         {Object.keys(confirmDeleteContact).length > 0 && (
           <ConfirmDeleteContactModal />
         )}
-        {Object.keys(contact).length > 0 && <UpdateContactModal />}
+        {Object.keys(editingContact).length > 0 && <UpdateContactModal />}
       </Main>
     </ThemeProvider>
   );

@@ -12,7 +12,7 @@ import { Select } from "../Select/select";
 const UpdateContactForm = () => {
   const [loading, setLoading] = useState(false);
 
-  const { contact, updateContact } = useContactContext();
+  const { editingContact, updateContact } = useContactContext();
 
   const {
     register,
@@ -21,10 +21,10 @@ const UpdateContactForm = () => {
   } = useForm<IUpdateFormValues>({
     resolver: zodResolver(updateFormSchema),
     values: {
-      name: contact.name,
-      email: contact.email,
-      phone: contact.phone,
-      category: contact.category,
+      name: editingContact.name,
+      email: editingContact.email,
+      phone: editingContact.phone,
+      category: editingContact.category,
     },
   });
   const update = (formData: IUpdateFormValues) => {
@@ -46,7 +46,7 @@ const UpdateContactForm = () => {
         label="E-mail"
         type="email"
         id="email"
-        placeholder="Digite seu e-mail"
+        placeholder="Digite o e-mail"
         {...register("email")}
         error={errors.email}
         disabled={loading}
@@ -55,7 +55,7 @@ const UpdateContactForm = () => {
         label="Telefone"
         type="text"
         id="phone"
-        placeholder="Digite seu telefone"
+        placeholder="Digite o telefone"
         {...register("phone")}
         error={errors.phone}
         disabled={loading}

@@ -4,19 +4,21 @@ import { IContact } from "../../types/types";
 import { useContactContext } from "../../hooks/useContactContext";
 
 const FavoritesList = () => {
-  const { favoritesList, removeAllContactsFromFavoritesList } =
-    useContactContext();
+  const { contactsList, removeAllFavorites } = useContactContext();
+
+  const favorites = contactsList.filter((contact) => contact.isFavorite);
+
   return (
     <>
-      {favoritesList.length > 0 ? (
+      {favorites.length ? (
         <Div>
           <ul>
-            {favoritesList.map((contact: IContact) => (
+            {favorites.map((contact: IContact) => (
               <FavoritesCard key={contact.id} contact={contact} />
             ))}
           </ul>
           <div className="div_btn_remove">
-            <button onClick={removeAllContactsFromFavoritesList}>
+            <button onClick={() => removeAllFavorites(favorites)}>
               Remover todos
             </button>
           </div>
