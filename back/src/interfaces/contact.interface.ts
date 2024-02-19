@@ -12,9 +12,10 @@ type IContactsResp = z.infer<typeof contactsRespSchema>;
 interface IContactUpdate {
   avatar?: string;
   name?: string;
-  email?: string;
+  email?: string | null;
   password?: string;
   phone?: string;
+  isFavorite?: boolean;
 }
 
 export { IContactReq, IContactResp, IContactsResp, IContactUpdate };

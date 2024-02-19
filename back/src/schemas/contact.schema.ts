@@ -11,9 +11,10 @@ const contactCategory = z.enum([
 const contactSchema = z.object({
   id: z.string(),
   name: z.string().max(50),
-  email: z.string().max(50).email(),
+  email: z.string().nullable().or(z.string().email().max(50)),
   phone: z.string().max(15),
   category: contactCategory,
+  isFavorite: z.boolean().default(false),
   createdAt: z.date(),
   userId: z.string(),
 });

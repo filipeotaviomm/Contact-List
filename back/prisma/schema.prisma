@@ -23,9 +23,10 @@ model User{
 model Contact{
   id String @id @default(uuid())
   name String @db.VarChar(50)
-  email String @db.VarChar(50)
+  email String? @db.VarChar(50)
   phone String @db.VarChar(15)
   category Categories
+  isFavorite Boolean @default(false)
   createdAt DateTime @default(now())
   userId String
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
