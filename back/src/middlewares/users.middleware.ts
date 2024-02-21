@@ -13,7 +13,9 @@ export const isEmailUnique = async (
 
   if (!containsEmail) return next();
 
-  if (res.locals.decoded.email === req.body.email) return next();
+  if (res.locals.decoded) {
+    if (res.locals.decoded.email === req.body.email) return next();
+  }
 
   const email: User | null = await prisma.user.findUnique({
     where: { email: req.body.email },
