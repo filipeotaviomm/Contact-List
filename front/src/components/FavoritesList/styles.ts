@@ -20,8 +20,8 @@ export const Div = styled.div`
 
   .div_btn_remove {
     position: fixed;
-    bottom: 70px;
-    left: 525px;
+    bottom: 53px;
+    left: 533px;
     width: 300px;
     background: linear-gradient(to bottom right, #ffcccc, #ff9999);
 
