@@ -120,6 +120,7 @@ export const UserProvider = ({ children }: IChildren) => {
         const decoded = jwtDecode(token);
         api.defaults.headers.common.Authorization = `Bearer ${token}`;
         await api.delete(`/users/${decoded.sub}`);
+        toast.success("Sua conta foi deletada");
         localStorage.removeItem("@contact-liszt:token");
         navigate("/");
         setConfirmDeleteUser(false);

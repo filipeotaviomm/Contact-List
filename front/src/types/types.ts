@@ -21,15 +21,6 @@ export interface ISelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   disabled?: boolean;
 }
 
-// export interface IListContact {
-//   id: string;
-//   name: string;
-//   email: string;
-//   phone: number | string;
-//   category: string;
-//   createdAt: string;
-// }
-
 export interface ICardContact {
   contact: IContact;
 }
