@@ -48,6 +48,7 @@ Esse projeto foi criado em 2024 durante o curso de desenvolvimento web full-stac
     Crie um arquivo .env e complete com suas informações conforme esta no .env.example.
 
   <h4>3º Passo - Configurando o Backend</h4>
+  
   1. Abra um novo terminal e rode o seguinte comando para alterar para a pasta do back-end:
 
   ```bash
