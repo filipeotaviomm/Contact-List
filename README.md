@@ -2,7 +2,7 @@
 
 <div style="align-items: center">
   
-![NodeJS](https://img.shields.io/badge/node.js-C3ECBC?style=for-the-badge&logo=node.js&logoColor=white) ![Express](https://img.shields.io/badge/express-FF007F.svg?style=for-the-badge&logo=express&logoColor=white) ![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white) ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) ![Typescript](https://img.shields.io/badge/TypeScript-A3CEEF?style=for-the-badge&logo=typescript&logoColor=fff) ![ReactJS](https://img.shields.io/badge/react-61DBFB.svg?style=for-the-badge&logo=react&logoColor=white)
+![NodeJS](https://img.shields.io/badge/node.js-C3ECBC?style=for-the-badge&logo=node.js&logoColor=white) ![NestJS](https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white) ![Express](https://img.shields.io/badge/express-FF007F.svg?style=for-the-badge&logo=express&logoColor=white) ![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white) ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) ![Typescript](https://img.shields.io/badge/TypeScript-A3CEEF?style=for-the-badge&logo=typescript&logoColor=fff) ![ReactJS](https://img.shields.io/badge/react-61DBFB.svg?style=for-the-badge&logo=react&logoColor=white)
 
 </div>
 
