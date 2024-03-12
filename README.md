@@ -51,7 +51,7 @@ Esse projeto foi criado em 2024 durante o curso de desenvolvimento web full-stac
   1. Abra um novo terminal e rode o seguinte comando para alterar para a pasta do back-end:
 
   ```bash
-  $ cd back
+  $ cd back-node
   ```
 
   2. Rode os seguintes comandos:
@@ -65,6 +65,27 @@ Esse projeto foi criado em 2024 durante o curso de desenvolvimento web full-stac
 
   # development
   $ npm run dev
+  ```
+
+  <p>ou</p>
+
+  1. Abra um novo terminal e rode o seguinte comando para alterar para a pasta do back-end:
+
+  ```bash
+  $ cd back-nest
+  ```
+
+  2. Rode os seguintes comandos:
+
+  ```bash
+  #instala todas as dependências necessárias
+  $ npm install
+
+  # migrate
+  $ npx prisma migrate dev
+
+  # development
+  $ npm run start:dev
   ```
 
   <h4>4º Passo - Testando o Backend</h4>
