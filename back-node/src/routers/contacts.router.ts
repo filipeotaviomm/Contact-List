@@ -12,6 +12,7 @@ import {
   updateContactController,
 } from "../controllers/contacts.controller";
 import { isUserLogged } from "../middlewares/users.middleware";
+import { pagination } from "../middlewares/pagination.middleware";
 
 export const contactRouter: Router = Router();
 
@@ -22,7 +23,7 @@ contactRouter.post(
   createContactController
 );
 
-contactRouter.get("/", isUserLogged, getAllContactsController);
+contactRouter.get("/", isUserLogged,   pagination("/contacts"), getAllContactsController);
 
 contactRouter.get("/:contactId", isUserLogged, getContactByIdController);
 

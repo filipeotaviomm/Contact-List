@@ -10,6 +10,7 @@ import {
   contactRespSchema,
   contactsRespSchema,
 } from "../schemas/contact.schema";
+import { IAllContacts, IPaginationParams } from "../interfaces/pagination.interface";
 
 const createContactService = async (
   userId: string,
@@ -22,12 +23,33 @@ const createContactService = async (
 };
 
 const getAllContactsService = async (
+  pagination: IPaginationParams,
   userId: string
-): Promise<IContactsResp> => {
-  const contacts: Contact[] = await prisma.contact.findMany({
-    where: { userId: userId },
-  });
-  return contactsRespSchema.parse(contacts);
+): Promise<IAllContacts> => {
+
+  const { page,
+    perPage,
+    prevPage,
+    nextPage,
+    order,
+    sort } = pagination;
+
+  const contacts = await prisma.contact.findMany({
+      where: { userId: userId},
+      orderBy: { [sort]: order },
+      skip: page,
+      take: perPage,
+    });
+  
+  const count = await prisma.contact.count();
+
+  return {
+    prevPage: page <= 1 ? null : prevPage,
+    nextPage: count - page <= perPage ? null : nextPage,
+    // data: contactsRespSchema.parse(contacts),
+    data: contacts,
+    count,
+  }  
 };
 
 const getContactByIdService = async (

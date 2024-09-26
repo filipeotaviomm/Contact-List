@@ -144,8 +144,6 @@ export interface IContactContext {
   favoritesList: IContact[];
   setFavoritesList: React.Dispatch<React.SetStateAction<IContact[]>>;
 
-  removeAllContactsFromFavoritesList: () => void;
-
   editingContact: IContact;
   setEditingContact: React.Dispatch<React.SetStateAction<IContact>>;
 

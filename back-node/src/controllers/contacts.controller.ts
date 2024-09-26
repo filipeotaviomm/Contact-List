@@ -19,7 +19,7 @@ const getAllContactsController = async (
   _req: Request,
   res: Response
 ): Promise<Response> => {
-  const contacts = await getAllContactsService(res.locals.decoded.sub);
+  const contacts = await getAllContactsService(res.locals.pagination, res.locals.decoded.sub);
   return res.status(200).json(contacts);
 };
 

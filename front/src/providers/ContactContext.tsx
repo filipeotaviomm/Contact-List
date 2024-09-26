@@ -41,7 +41,7 @@ export const ContactProvider = ({ children }: IChildren) => {
         setLoading(true);
         api.defaults.headers.common.Authorization = `Bearer ${token}`;
         const response = await api.get("/contacts");
-        setContactsList(response.data);
+        setContactsList(response.data.data);
       } catch (error) {
         console.log(error);
       } finally {
@@ -178,11 +178,6 @@ export const ContactProvider = ({ children }: IChildren) => {
     setContactsList(contactsListFiltered);
   };
 
-  const removeAllContactsFromFavoritesList = () => {
-    setFavoritesList([]);
-    setFavsIsVisible(false);
-    toast.success("Todos os contatos foram removidos dos favoritos");
-  };
 
   const contactsResult = contactsList.filter((contact) => {
     const searchFilter =
@@ -225,7 +220,6 @@ export const ContactProvider = ({ children }: IChildren) => {
         deleteContact,
         favoritesList,
         setFavoritesList,
-        removeAllContactsFromFavoritesList,
         editingContact,
         setEditingContact,
         updateContact,
