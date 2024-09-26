@@ -27,7 +27,7 @@ const ContactsCard = ({ contact }: ICardContact) => {
   return (
     <Li>
       <div>
-        <h3>{contact.name}</h3>
+        <h3 className="general">{contact.name}</h3>
         <div className="edit_remove_buttons">
           <button
             onClick={() => updateLikeContact(contact, isContactFavorite)}

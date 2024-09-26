@@ -148,7 +148,7 @@ export const ContactProvider = ({ children }: IChildren) => {
       });
 
       const response = await api.get("/contacts");
-      setContactsList(response.data);
+      setContactsList(response.data.data);
 
       toast.success("Todos os contatos foram removidos da lista de favoritos");
       setFavsIsVisible(false);
