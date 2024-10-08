@@ -3,6 +3,7 @@ import {
   IChildren,
   IContact,
   IContactContext,
+  IContactsPagination,
   IFavorite,
 } from "../types/types";
 import { createContext } from "react";
@@ -21,7 +22,10 @@ export const ContactProvider = ({ children }: IChildren) => {
   const [CreateContactModalIsVisible, setCreateContactModalIsVisible] =
     useState(false);
   const [loading, setLoading] = useState(false);
-  const [contactsList, setContactsList] = useState<IContact[] | []>([]);
+  const [contactsListPagination, setContactsListPagination] = useState<IContact[] | []>([]);
+  const [allContactsList, setAllContactsList] = useState([] as IContact[]);
+  const [pagination, setPagination] = useState<IContactsPagination>({} as IContactsPagination);
+  const [page, setPage] = useState(1);
   const [editingContact, setEditingContact] = useState({} as IContact);
   const [searchInputValue, setSearchInputValue] = useState("");
   const [inputSearch, setInputSearch] = useState("");
@@ -29,28 +33,53 @@ export const ContactProvider = ({ children }: IChildren) => {
   const [confirmDeleteContact, setConfirmDeleteContact] = useState<IContact>(
     {} as IContact
   );
-  const [favoritesList, setFavoritesList] = useState([] as IContact[]);
 
   const { isUserLogged } = useUserContext();
 
+
   useEffect(() => {
-    const getAllContacts = async () => {
+    const getAllContactsPagination = async () => {
       const token: string | null = localStorage.getItem("@contact-liszt:token");
-      // if (token) {
       try {
         setLoading(true);
         api.defaults.headers.common.Authorization = `Bearer ${token}`;
-        const response = await api.get("/contacts");
-        setContactsList(response.data.data);
+        const response = await api.get(`/contacts?page=${page}&perPage=6&sort=createdAt&order=asc`);
+        setContactsListPagination(response.data.data);
+        setPagination(response.data);
       } catch (error) {
         console.log(error);
       } finally {
         setLoading(false);
       }
-      // }
     };
-    getAllContacts();
-  }, [isUserLogged]);
+
+    getAllContactsPagination();
+  }, [page, isUserLogged]);
+
+
+
+  const getAllContacts = async () => {
+    const token: string | null = localStorage.getItem("@contact-liszt:token");
+    try {
+      setLoading(true);
+      api.defaults.headers.common.Authorization = `Bearer ${token}`;
+      const response = await api.get("/contacts/all");
+      setAllContactsList(response.data);
+      setFavsIsVisible(true)
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+
+  //se excluir todos os cards de um página, aí volta para a página anterior
+  useEffect(() => {
+    if (pagination.prevPage && !contactsListPagination.length) setPage((pageNumber) => pageNumber - 1) //é a mesma coisa de setPage(page - 1)
+  }, [contactsListPagination]);
+
 
   const createContact = async (
     formData: ICreateContactFormValues,
@@ -62,7 +91,12 @@ export const ContactProvider = ({ children }: IChildren) => {
       setLoading(true);
       api.defaults.headers.common.Authorization = `Bearer ${token}`;
       const response = await api.post("/contacts", formData);
-      setContactsList([...contactsList, response.data]);
+      if (contactsListPagination.length < 6) {
+        setContactsListPagination([...contactsListPagination, response.data]);
+      } else {
+        const response = await api.get(`/contacts?page=${page}&perPage=6&sort=createdAt&order=asc`);        
+        setPagination(response.data);
+      } 
       toast.success("Contato criado com sucesso");
       setCreateContactModalIsVisible(false);
       reset();
@@ -87,14 +121,15 @@ export const ContactProvider = ({ children }: IChildren) => {
           formData
         );
 
-        const newContactsList = contactsList.map((cont) => {
+        const newContactsList = contactsListPagination.map((cont) => {
           if (cont.id === editingContact.id) {
             return response.data;
           } else {
             return cont;
           }
         });
-        setContactsList(newContactsList);
+        
+        setContactsListPagination(newContactsList);
         toast.success(`${editingContact.name} foi atualizado com sucesso`);
         setEditingContact({} as IContact);
       } catch (error) {
@@ -118,13 +153,23 @@ export const ContactProvider = ({ children }: IChildren) => {
           isContactFavorite
         );
 
-        const newContactsList = contactsList.map((cont) => {
+        const newContactsList = contactsListPagination.map((cont) => {
           if (cont.id === currentContact.id) {
             return response.data;
           }
           return cont;
         });
-        setContactsList(newContactsList);
+        setContactsListPagination(newContactsList);
+
+        const newAllContactsList = allContactsList.map((cont) => {
+          if (cont.id === currentContact.id) {
+            return response.data;
+          } else {
+            return cont;
+          }
+        });
+        setAllContactsList(newAllContactsList);
+
       } catch (error) {
         console.log(error);
       } finally {
@@ -133,10 +178,10 @@ export const ContactProvider = ({ children }: IChildren) => {
     }
   };
 
-  const removeAllFavorites = async (favoritesList: IContact[]) => {
+  const removeAllFavorites = async (allContactsList: IContact[]) => {
     const token: string | null = localStorage.getItem("@contact-liszt:token");
     if (token) {
-      favoritesList.forEach(async (favorite) => {
+      allContactsList.forEach(async (favorite) => {
         try {
           api.defaults.headers.common.Authorization = `Bearer ${token}`;
           await api.patch(`./contacts/${favorite.id}`, {
@@ -147,8 +192,9 @@ export const ContactProvider = ({ children }: IChildren) => {
         }
       });
 
-      const response = await api.get("/contacts");
-      setContactsList(response.data.data);
+      const response = await api.get(`/contacts?page=${page}&perPage=6&sort=createdAt&order=asc`);
+      setContactsListPagination(response.data.data);
+      setPagination(response.data);
 
       toast.success("Todos os contatos foram removidos da lista de favoritos");
       setFavsIsVisible(false);
@@ -172,14 +218,13 @@ export const ContactProvider = ({ children }: IChildren) => {
       setLoading(false);
     }
 
-    const contactsListFiltered = contactsList.filter(
+    const contactsListFiltered = contactsListPagination.filter(
       (contact) => contact.id !== removedId
     );
-    setContactsList(contactsListFiltered);
+    setContactsListPagination(contactsListFiltered);
   };
 
-
-  const contactsResult = contactsList.filter((contact) => {
+  const contactsResult = contactsListPagination.filter((contact) => {
     const searchFilter =
       inputSearch === ""
         ? true
@@ -204,8 +249,12 @@ export const ContactProvider = ({ children }: IChildren) => {
         CreateContactModalIsVisible,
         setCreateContactModalIsVisible,
         loading,
-        contactsList,
-        setContactsList,
+        contactsListPagination,
+        setContactsListPagination,
+        pagination,
+        setPagination,
+        page,
+        setPage,
         createContact,
         searchInputValue,
         setSearchInputValue,
@@ -218,8 +267,9 @@ export const ContactProvider = ({ children }: IChildren) => {
         confirmDeleteContact,
         setConfirmDeleteContact,
         deleteContact,
-        favoritesList,
-        setFavoritesList,
+        allContactsList,
+        setAllContactsList,
+        getAllContacts,
         editingContact,
         setEditingContact,
         updateContact,

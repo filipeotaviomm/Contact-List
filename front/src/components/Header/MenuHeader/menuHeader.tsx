@@ -12,7 +12,7 @@ const MenuHeader = () => {
     setConfirmDeleteUser,
     setUser,
   } = useUserContext();
-  const { setContactsList } = useContactContext();
+  const { setContactsListPagination } = useContactContext();
 
   const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ const MenuHeader = () => {
     navigate("/");
     setIsMenuOpen(false);
     setUser({} as IUser);
-    setContactsList([]);
+    setContactsListPagination([]);
   };
 
   const boxRef = useRef<HTMLDivElement>(null);

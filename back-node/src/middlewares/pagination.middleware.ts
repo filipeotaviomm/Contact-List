@@ -9,7 +9,7 @@ export const pagination =
 
     const page: number = queryPage && queryPage > 1 ? queryPage : 1;
     const perPage: number =
-      queryPerPage && queryPerPage > 0 && queryPerPage <= 3 ? queryPerPage : 3;
+      queryPerPage && queryPerPage > 0 && queryPerPage <= 6 ? queryPerPage : 6;
 
     const baseUrl: string = `http://localhost:3000${url}`;
     
@@ -22,7 +22,7 @@ export const pagination =
     }&perPage=${perPage}`;
 
     const querySort: any = req.query.sort;
-    const sortOpts: Array<string> = ["id", "name", "email", "value", "size"];
+    const sortOpts: Array<string> = ["id", "name", "email", "createdAt"];
 
     const queryOrder: any = req.query.order;
     const orderOpts: Array<string> = ["asc", "desc"];

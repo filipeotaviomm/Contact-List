@@ -23,6 +23,16 @@ const createContactService = async (
 };
 
 const getAllContactsService = async (
+  userId: string
+): Promise<IContactsResp> => {
+  const contacts: Contact[] = await prisma.contact.findMany({
+    where: { userId: userId },
+    orderBy: { createdAt: "asc" },
+  });
+  return contactsRespSchema.parse(contacts);
+};
+
+const getAllContactsPaginationService = async (
   pagination: IPaginationParams,
   userId: string
 ): Promise<IAllContacts> => {
@@ -46,7 +56,6 @@ const getAllContactsService = async (
   return {
     prevPage: page <= 1 ? null : prevPage,
     nextPage: count - page <= perPage ? null : nextPage,
-    // data: contactsRespSchema.parse(contacts),
     data: contacts,
     count,
   }  
@@ -79,6 +88,7 @@ const deleteContactService = async (contactId: string): Promise<void> => {
 export {
   createContactService,
   getAllContactsService,
+  getAllContactsPaginationService,
   getContactByIdService,
   updateContactService,
   deleteContactService,

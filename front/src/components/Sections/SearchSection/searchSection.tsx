@@ -10,7 +10,7 @@ const SearchSection = () => {
     searchInputValue,
     setSearchInputValue,
     setInputSearch,
-    setFavsIsVisible,
+    getAllContacts,
     setCreateContactModalIsVisible,
     cleanFilters,
     categoryButton,
@@ -74,7 +74,7 @@ const SearchSection = () => {
           <Button onClick={() => setCreateContactModalIsVisible(true)}>
             <BsPersonPlus size={22} />
           </Button>
-          <Button onClick={() => setFavsIsVisible(true)}>
+          <Button onClick={() => getAllContacts()}>
             <FaRegHeart size={17} />
           </Button>
         </div>

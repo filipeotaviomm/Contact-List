@@ -5,6 +5,7 @@ import { ICardContact, ICategories, IFavorite } from "../../../types/types";
 import { useContactContext } from "../../../hooks/useContactContext";
 import { FaHeart } from "react-icons/fa";
 
+
 const ContactsCard = ({ contact }: ICardContact) => {
   const { setConfirmDeleteContact, setEditingContact, updateLikeContact } =
     useContactContext();

@@ -5,7 +5,7 @@ export const Section = styled.section`
   justify-content: center;
   width: 100%;
   padding: 0 clamp(0px, 8vw, 200px);
-  max-width: 1440px;
+  width: 1115px;
   margin: 0 auto;
   margin-top: 50px;
   margin-bottom: 50px;

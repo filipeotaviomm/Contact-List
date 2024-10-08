@@ -89,6 +89,13 @@ export interface IContact {
   userId: string;
 }
 
+export interface IContactsPagination {
+  prevPage: null | string;
+  nextPage: null | string;
+  data: IContact[] | []
+  count: number
+}
+
 export interface ICategories {
   [key: string]: string; // serve para dizer que qualquer string pode ser usada como índice para acessar uma string em ICategories
   family: string;
@@ -111,14 +118,24 @@ export interface IContactContext {
 
   loading: boolean;
 
-  contactsList: IContact[] | [];
-  setContactsList: React.Dispatch<React.SetStateAction<[] | IContact[]>>;
+  contactsListPagination: IContact[] | [];
+  setContactsListPagination: React.Dispatch<React.SetStateAction<[] | IContact[]>>;
 
+
+  pagination: IContactsPagination;
+  setPagination: React.Dispatch<React.SetStateAction<IContactsPagination>>;
+
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>
+
+  
   createContact: (
     formData: ICreateContactFormValues,
     setLoading: React.Dispatch<React.SetStateAction<boolean>>,
     reset: () => void
   ) => Promise<void>;
+
+  getAllContacts: () => Promise<void>
 
   searchInputValue: string;
   setSearchInputValue: React.Dispatch<React.SetStateAction<string>>;
@@ -141,8 +158,8 @@ export interface IContactContext {
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => Promise<void>;
 
-  favoritesList: IContact[];
-  setFavoritesList: React.Dispatch<React.SetStateAction<IContact[]>>;
+  allContactsList: IContact[];
+  setAllContactsList: React.Dispatch<React.SetStateAction<IContact[]>>;
 
   editingContact: IContact;
   setEditingContact: React.Dispatch<React.SetStateAction<IContact>>;

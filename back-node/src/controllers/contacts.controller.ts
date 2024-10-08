@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import {
   createContactService,
   deleteContactService,
+  getAllContactsPaginationService,
   getAllContactsService,
   getContactByIdService,
   updateContactService,
@@ -19,7 +20,15 @@ const getAllContactsController = async (
   _req: Request,
   res: Response
 ): Promise<Response> => {
-  const contacts = await getAllContactsService(res.locals.pagination, res.locals.decoded.sub);
+  const contacts = await getAllContactsService(res.locals.decoded.sub);
+  return res.status(200).json(contacts);
+};
+
+const getAllContactsPaginationController = async (
+  _req: Request,
+  res: Response
+): Promise<Response> => {
+  const contacts = await getAllContactsPaginationService(res.locals.pagination, res.locals.decoded.sub);
   return res.status(200).json(contacts);
 };
 
@@ -50,6 +59,7 @@ const deleteContactController = async (
 export {
   createContactController,
   getAllContactsController,
+  getAllContactsPaginationController,
   getContactByIdController,
   updateContactController,
   deleteContactController,

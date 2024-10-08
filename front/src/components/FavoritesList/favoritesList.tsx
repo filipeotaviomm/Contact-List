@@ -4,9 +4,9 @@ import { IContact } from "../../types/types";
 import { useContactContext } from "../../hooks/useContactContext";
 
 const FavoritesList = () => {
-  const { contactsList, removeAllFavorites } = useContactContext();
+  const { allContactsList, removeAllFavorites } = useContactContext();
 
-  const favorites = contactsList.filter((contact) => contact.isFavorite);
+  const favorites = allContactsList.filter((contact) => contact.isFavorite);
 
   return (
     <>

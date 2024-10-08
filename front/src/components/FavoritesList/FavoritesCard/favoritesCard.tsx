@@ -1,5 +1,5 @@
 import { useContactContext } from "../../../hooks/useContactContext";
-import { ICardContact, IFavorite } from "../../../types/types";
+import { ICardContact, ICategories, IFavorite } from "../../../types/types";
 import { Li } from "./styles";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
@@ -12,6 +12,14 @@ const FavoritesCard = ({ contact }: ICardContact) => {
   const formatedDate = `${date.getDate()}/${
     date.getMonth() + 1
   }/${date.getFullYear()}`;
+
+  const categories: ICategories = {
+    family: "Família",
+    friends: "Amigos",
+    work: "Trabalho",
+    school: "Escola",
+    standard: "Padrão",
+  };
 
   return (
     <Li>
@@ -27,9 +35,9 @@ const FavoritesCard = ({ contact }: ICardContact) => {
         </button>
       </div>
       <p>Telefone: {contact.phone}</p>
-      <p>E-mail:{contact.email}</p>
-      <p>Categoria:{contact.category}</p>
-      <p>Criado em:{formatedDate}</p>
+      <p>E-mail: {contact.email}</p>
+      <p>Categoria: {categories[contact.category]}</p>
+      <p>Criado em: {formatedDate}</p>
     </Li>
   );
 };

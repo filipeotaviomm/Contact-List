@@ -8,6 +8,7 @@ import {
   createContactController,
   deleteContactController,
   getAllContactsController,
+  getAllContactsPaginationController,
   getContactByIdController,
   updateContactController,
 } from "../controllers/contacts.controller";
@@ -23,7 +24,9 @@ contactRouter.post(
   createContactController
 );
 
-contactRouter.get("/", isUserLogged,   pagination("/contacts"), getAllContactsController);
+contactRouter.get("/all", isUserLogged, getAllContactsController);
+
+contactRouter.get("/", isUserLogged,   pagination("/contacts"), getAllContactsPaginationController);
 
 contactRouter.get("/:contactId", isUserLogged, getContactByIdController);
 
