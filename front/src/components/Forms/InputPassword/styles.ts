@@ -5,6 +5,10 @@ export const Div = styled.div`
   flex-direction: column;
   position: relative;
 
+  & > label {
+    font-weight: 500;
+  }
+
   & > input {
     border: 1px solid black;
     border-radius: 3px;
@@ -22,7 +26,7 @@ export const Div = styled.div`
 
   .error {
     display: flex;
-    margin-top: 5px;
+    margin-top: 1px;
     color: red;
   }
 `;

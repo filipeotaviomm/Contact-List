@@ -23,4 +23,8 @@ export const Li = styled.li`
       gap: 10px;
     }
   }
+
+  .font_weight {
+    font-weight: 550;
+  }
 `;

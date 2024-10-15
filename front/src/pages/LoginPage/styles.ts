@@ -19,7 +19,8 @@ export const Main = styled.main`
     flex-direction: column;
     background-color: white;
     width: 300px;
-    height: 360px;
+    min-height: 360px;
+    height: auto;
     gap: 10px;
     padding: 20px;
     border-radius: 10px;

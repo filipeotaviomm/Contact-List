@@ -58,9 +58,9 @@ const ContactsCard = ({ contact }: ICardContact) => {
           </button>
         </div>
       </div>
-      <p className="general">Telefone: {contact.phone}</p>
-      <p className="general">E-mail: {contact.email}</p>
-      <p className="general">Categoria: {categories[contact.category]}</p>
+      <p className="general"><span className="font_weight">Telefone:</span> {contact.phone}</p>
+      <p className="general"><span className="font_weight">E-mail:</span> {contact.email}</p>
+      <p className="general"><span className="font_weight">Categoria:</span> {categories[contact.category]}</p>
       <p className="general">Criado em {formatedDate}</p>
     </Li>
   );

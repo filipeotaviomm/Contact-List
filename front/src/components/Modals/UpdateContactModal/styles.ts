@@ -5,8 +5,6 @@ export const Modal = styled.div`
   inset: 0;
   width: 100%;
   height: 100vh;
-  /* background: hsla(0, 0%, 50%, 0.5);
-  background: rgba(0, 0, 0, 0.751); */
   background: rgba(18, 18, 20, 0.5);
   display: flex;
   align-items: center;
@@ -14,7 +12,8 @@ export const Modal = styled.div`
 
   & > div {
     width: 320px;
-    height: 470px;
+    min-height: 440px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;

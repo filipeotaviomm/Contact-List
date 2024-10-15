@@ -18,5 +18,10 @@ export const Form = styled.form`
 
   & > button {
     margin-top: 5px;
+    font-weight: 600;
+
+    &:hover {
+      background-color: #5087ab;
+    }
   }
 `;

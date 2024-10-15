@@ -20,7 +20,8 @@ export const Container = styled.div`
   flex-direction: column;
   background-color: white;
   width: 300px;
-  height: 600px;
+  min-height: 600px;
+  height: auto;
   gap: 8px;
   padding: 20px;
   border-radius: 10px;

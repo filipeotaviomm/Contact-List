@@ -51,5 +51,17 @@ export const Section = styled.section`
     & > .clicked {
       border: 2px solid blue;
     }
+
+    & > #add_contact {
+      &:hover {
+        background-color: #5087ab;
+      }
+    }
+
+    & > #favorites_list {
+      &:hover {
+        background-color: #ff3232;
+      }
+    }
   }
 `;

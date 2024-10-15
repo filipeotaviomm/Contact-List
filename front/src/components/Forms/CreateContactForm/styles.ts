@@ -16,14 +16,14 @@ export const Form = styled.form`
       height: 35px;
       width: 100%;
     }
+  }
 
-    & > select {
-      height: 35px;
-      margin-bottom: 10px;
-    }
+  & > button {
+    margin-top: 5px;
+    font-weight: 600;
 
-    & > button {
-      margin-top: 15px;
+    &:hover {
+      background-color: #5087ab;
     }
   }
 `;

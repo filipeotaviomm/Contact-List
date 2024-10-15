@@ -12,7 +12,8 @@ export const Modal = styled.div`
 
   & > div {
     width: 350px;
-    height: 610px;
+    min-height: 610px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,7 +45,7 @@ export const Modal = styled.div`
     & > form {
       margin-top: 20px;
       width: 100%;
-      gap: 10px;
+      gap: 15px;
     }
   }
 `;

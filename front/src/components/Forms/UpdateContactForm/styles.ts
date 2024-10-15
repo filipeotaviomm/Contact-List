@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 
   & > div {
     display: flex;
@@ -18,5 +18,10 @@ export const Form = styled.form`
 
   & > button {
     margin-top: 5px;
+    font-weight: 600;
+
+    &:hover {
+      background-color: #5087ab;
+    }
   }
 `;

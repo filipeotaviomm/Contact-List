@@ -4,7 +4,7 @@ export const Li = styled.li`
   width: 270px;
   display: flex;
   flex-direction: column;
-  border: 1px solid ${(props) => props.theme.contrastColor};
+  border: 2px solid ${(props) => props.theme.cards_border};
   border-radius: 5px;
   padding: 15px;
   gap: 5px;
@@ -21,6 +21,10 @@ export const Li = styled.li`
 
   .general {
     color: ${(props) => props.theme.contrastColor};
+  }
+
+  .font_weight {
+    font-weight: 550;
   }
 
   .grey_heart {

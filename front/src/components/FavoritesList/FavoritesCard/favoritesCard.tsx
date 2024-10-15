@@ -34,9 +34,9 @@ const FavoritesCard = ({ contact }: ICardContact) => {
           <RiDeleteBin6Line size={18} />
         </button>
       </div>
-      <p>Telefone: {contact.phone}</p>
-      <p>E-mail: {contact.email}</p>
-      <p>Categoria: {categories[contact.category]}</p>
+      <p><span className="font_weight">Telefone:</span> {contact.phone}</p>
+      <p><span className="font_weight">E-mail:</span> {contact.email}</p>
+      <p><span className="font_weight">Categoria:</span> {categories[contact.category]}</p>
       <p>Criado em: {formatedDate}</p>
     </Li>
   );

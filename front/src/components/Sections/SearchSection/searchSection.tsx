@@ -71,11 +71,11 @@ const SearchSection = () => {
           >
             Escola
           </Button>
-          <Button onClick={() => setCreateContactModalIsVisible(true)}>
+          <Button id="add_contact" onClick={() => setCreateContactModalIsVisible(true)}>
             <BsPersonPlus size={22} />
           </Button>
-          <Button onClick={() => getAllContacts()}>
-            <FaRegHeart size={17} />
+          <Button id="favorites_list" onClick={() => getAllContacts()}>
+            <FaRegHeart size={18} />
           </Button>
         </div>
       </div>

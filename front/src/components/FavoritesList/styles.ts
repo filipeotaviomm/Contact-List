@@ -21,15 +21,21 @@ export const Div = styled.div`
   .div_btn_remove {
     position: fixed;
     bottom: 53px;
-    right: 561px;
-    width: 252px;
+    right: 551px;
+    width: 265px;
     background: linear-gradient(to bottom right, #ffcccc, #ff9999);
+    border-radius: 3px 3px 0 0;
 
     & > button {
       border: 1px solid transparent;
-      border-radius: 3px;
       padding: 15px 5px;
       width: 100%;
+      font-weight: 600;
+
+      &:hover {
+        background-color: #ff3232;
+        border-radius: 3px 3px 0 0;
+      }
     }
   }
 `;
