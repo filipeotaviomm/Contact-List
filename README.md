@@ -69,7 +69,7 @@ Esse projeto foi criado em 2024 durante o curso de desenvolvimento web full-stac
   $ npm run dev
   ```
 
-    <h4>4º Passo - Testando o Backend</h4>
+  <h4>4º Passo - Testando o Backend</h4>
   1. Na raiz do projeto há um arquivo chamado "workspace_insomnia" que pode ser importado no insomnia para serem efetuados testes de rota.
 
 
